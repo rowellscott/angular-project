@@ -99,14 +99,18 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
     }
 
     const doctorId = req.params.id;
-
-    Visit.find({"doctor_id": doctorId}, (err, clients)=>{
+    //Find All Patients for Doctor By Id
+    Visit.find({ "doctor_id": doctorId}).distinct("patient_id", (err, clientIds)=>{
       if (err) {
-        res.status(500).json({message:"Clients List Not Found"});
-        return
-      }
-      res.status(200).json(clients)
-    });
+            res.status(500).json({message:"Clients List Not Found"});
+            return
+          }
+    //Find All Patients Data By Id
+      User.find({'_id': {$in: clientIds}
+      }, (err, clients) =>{
+        res.status(200).json(clients)
+      })
+  });
 });
 
 //Doctor, Patient View Profile
@@ -168,7 +172,7 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
   });
 });
 
-// Delete a User
+// Delete a User - If Need
 userRoutes.delete("/api/users/:id/delete", (req, res, next)=>{
   if (!req.user) {
     res.status(401).json({ message: "Log In To Delete User." });

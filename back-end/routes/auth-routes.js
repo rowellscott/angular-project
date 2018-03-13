@@ -8,7 +8,7 @@ const User = require('../models/user-model');
 const authRoutes = express.Router();
 
 authRoutes.post('/api/signup', (req, res, next)=>{
-      if(!req.body.signUpUsername || !req.body.signUpPassword || !req.body.firstName || !req.body.lastName || !req.body.role){
+      if(!req.body.signUpUsername || !req.body.signUpPassword || !req.body.signUpFirstName || !req.body.signUpLastName || !req.body.signUpRole){
         res.status(400).json({message: "Please Fill In All Fields"});
         return;
       }
@@ -34,10 +34,10 @@ authRoutes.post('/api/signup', (req, res, next)=>{
           const theUser = new User({
             username: req.body.signUpUsername, 
             encryptedPassword: hashedPassword,
-            firstName: req.body.signUpfirstName,
-            lastName: req.body.signUplastName, 
-            address: req.body.signUpaddress,
-            role: req.body.signUprole,
+            firstName: req.body.signUpFirstName,
+            lastName: req.body.signUpLastName, 
+            address: req.body.signUpAddress,
+            role: req.body.signUpRole,
           });
         
           //Save The User To Database

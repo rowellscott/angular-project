@@ -32,7 +32,8 @@ const VisitSchema = new Schema({
     },
     patient_id:{
       type: Schema.Types.ObjectId,
-      required: true
+      required: true,
+      ref: 'User'
     },
     doctor_id:{
       type: Schema.Types.ObjectId,

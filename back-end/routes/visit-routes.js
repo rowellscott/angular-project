@@ -3,12 +3,18 @@ const express = require('express');
 const visitRoutes = express.Router();
 
 const Visit = require('../models/visit-model');
+const User = require('../models/user-model')
 
-//Create New Visit
+//Create New Visit. :id = patient_id
 visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
     // If There's No Session, Return Error
     if(!req.user){
       res.status(401).json({message: "Log In To Add A Visit"});
+      return;
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      res.status(400).json({ message: "Specified id is not valid" });
       return;
     }
 
@@ -18,14 +24,14 @@ visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
     }
 
     //Confirm Patient Exists and That Id Belongs to Patient
-    User.findOne(req.params.id, (err, thePatient)=>{
+    User.findById(req.params.id, (err, thePatient)=>{
       if(err){
         res.status(500).json({message: "Client check went wrong"});
         return;
       }
       //Check if Patient Already Exists in Database
         if(!thePatient || thePatient.role !== "Patient"){
-          res.status(400).json({message: "Error Adding Visit. Not Adding to Existing Client"});
+          res.status(400).json({message: "Error Adding Visit. Client Id Invalid or Client Doesn't Exist"});
           return;
         }
    
