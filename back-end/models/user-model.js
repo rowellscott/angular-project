@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
+const email = require('mongoose-type-email');
 const Schema = mongoose.Schema; 
+
 
 const UserSchema = new Schema({
   username: {
       type: String,
-      required: true
+      // required: true
     }, 
   encryptedPassword: {
       type: String,
-      required: true
+      // required: true
     },
     firstName: {
       type: String,
@@ -18,9 +20,35 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
+    address:{
+      type: String,
+      required: true
+    },
+    // email:{
+    //   type: mongoose.SchemaTypes.Email, 
+    //   required: true
+    // },
+    // phone:{
+    //   type: String,
+    //   required: true
+    // },
+    //Patient Fields
+    // gender:{
+    //   type: String,
+    //   enum: ["M", "F"],
+    // },
+    insurance_co:{
+      type:String
+    },
+    // doctor_id:{
+    //   type: mongoose.SchemaTypes.ObjectId,
+    // },
+
+    //Role Selection
     role: {
       type: String, 
-      enum: ['Doctor', 'Nurse', 'Office', 'Patient'],
+      enum: ['Doctor', 'Patient'],
+      default: ['Patient'],
       required: true
     }
   },
@@ -29,5 +57,5 @@ const UserSchema = new Schema({
   }
 );
 
-const User = mongooe.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 module.exports = User;
