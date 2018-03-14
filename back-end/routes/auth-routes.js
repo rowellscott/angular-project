@@ -12,7 +12,15 @@ authRoutes.post('/api/signup', (req, res, next)=>{
         res.status(400).json({message: "Please Fill In All Fields"});
         return;
       }
-     
+      
+      //Check if User Already Exists By First Name and Last Name
+      // User.find({“firstName: signUpFirstName, lastName: signUpLastName} => (err, user) {
+      //   if(user){
+      //   res.status(400).json({message: “User Already Exists”});
+      // }	
+      
+      // }
+
       User.findOne({ username: req.body.signUpUsername }, (err, userFromDb)=>{
           // If error finding username, return error
           if(err){
@@ -25,13 +33,21 @@ authRoutes.post('/api/signup', (req, res, next)=>{
               res.status(400).json({message: "Username taken. Choose another one."});
               return;
           }
-        
-          //Hash Password
-          const salt = bcrypt.genSaltSync(10);
-          const hashedPassword = bcrypt.hashSync(req.body.signUpPassword, salt)
+          
+          //If User Signing Up is Doctor
+          if (req.body.signUpRole === "Doctor"){
+            
+            //Validate Address Field
+            if(!req.body.address){
+              res.status(400).json({message: "Please Fill In All Fields"})
+            }
+          
+            //Hash Password
+            const salt = bcrypt.genSaltSync(10);
+            const hashedPassword = bcrypt.hashSync(req.body.signUpPassword, salt)
 
-          //Define User
-          const theUser = new User({
+            //Define User
+            const theUser = new User({
             username: req.body.signUpUsername, 
             encryptedPassword: hashedPassword,
             firstName: req.body.signUpFirstName,
@@ -62,8 +78,55 @@ authRoutes.post('/api/signup', (req, res, next)=>{
           res.status(200).json(theUser);
         });
       });
-    });
+    };
+        //If User Signing Up is Patient
+        if (req.body.signUpRole === "Patient"){
+        //Find Patient in Database
+          User.find({"firstName": req.body.signUpFirstName, "lastName": req.body.signUpLastName}, (err, user)  => {
+            //If Patient Not In Database, Deny SignUp
+            if (!user){
+            res.status(400).json({message: "Unauthorized"})
+            return;
+            // Check if Patient Already Has A Username and Password. If True Deny Signup.
+          } else if (user.username) {
+            res.status(400).json({message: "Account Already Exists"})
+            return;
+          } else {	
+            const salt = bcrypt.genSaltSync(10);
+            const hashedPassword = bcrypt.hashSync(req.body.signUpPassword, salt)
+
+          
+            //Define User
+            const updates = {
+            username: req.body.signUpUsername, 
+            encryptedPassword: hashedPassword,
+            };
+           
+        // Save The User To Database
+          User.findOneAndUpdate({"firstName": req.body.signUpFirstName, "lastName": req.body.signUpLastName}, updates, (err, clientSignUp)=> {
+            if(err){
+              res.json(err);
+            return;
+            }
+            // Log In User Automatically After Sign Up
+            req.login(clientSignUp, (err)=>{
+              if(err){
+                res.status(500).json({message: "Login Error"});
+              return;
+              };
+            })
+
+         //Clear encryptedPassword Before Sending
+        // (From Request Object Only, Not Database) 
+          clientSignUp.encryptedPassword = undefined;
+          
+          res.status(200).json({message: "Username and Password Successfully Added"})
+          });
+        }
+      });
+    }
   });
+});
 
   authRoutes.post('/api/login', (req, res, next) =>{
     const authenticateFunction = passport.authenticate('local', (err, theUser, failureDetails)=>{
