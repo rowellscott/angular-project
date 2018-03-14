@@ -120,11 +120,4 @@ visitRoutes.get("/api/visits/visit/:id", (req, res, next)=>{
   });
 });
 
-
-
-
-
-
-
-
 module.exports = visitRoutes; 
