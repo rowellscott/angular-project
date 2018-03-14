@@ -11,8 +11,6 @@ var session = require('express-session')
 var passport = require('passport');
 var cors = require('cors');
 
-//to do: play guitar, play piano
-
 //Import Passport Strategy and Other Functions
 require('./configs/passport-config')
 
