@@ -37,7 +37,8 @@ visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
    
 
     const newVisit = new Visit({
-      temperature: req.body.temperature,
+      temperatureDeg: req.body.temperatureDeg,
+      temperatureScale: req.body.temperatureScale,
       height: req.body.height, 
       weight: req.body.weight,
       blood_pressure: req.body.bloodPressure,
@@ -56,7 +57,8 @@ visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
       //Validation Errors 
       if (err && newVisit.errors){
         res.status(400).json({
-          temperatureError: newVisit.errors.temperature,
+          temperatureDegError: newVisit.errors.temperatureDeg,
+          temperatureScaleError: newVisit.errors.temperatureScale,
           heightError: newVisit.errors.height,
           weightError: newVisit.errors.weight,
           bloodPressureError: newVisit.errors.blood_pressure,
@@ -78,7 +80,7 @@ visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
   });
 });
 
-//Get All Visits for Patient
+//Get All Visits for Patient - :id = Patient ID
 visitRoutes.get("/api/visits/:id", (req, res, next)=>{
   if (!req.user) {
     res.status(401).json({ message: "Log In To View Visit." });
@@ -86,6 +88,11 @@ visitRoutes.get("/api/visits/:id", (req, res, next)=>{
   }
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  if(req.user.role !== 'Doctor'){
+    res.status(401).json({message: "Unauthorized Access"});
     return;
   }
 
@@ -109,6 +116,12 @@ visitRoutes.get("/api/visits/visit/:id", (req, res, next)=>{
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
+
+  if(req.user.role !== 'Doctor'){
+    res.status(401).json({message: "Unauthorized Access"});
+    return;
+  }
+
 
   Visit.findById(req.params.id, (err, theVisit)=>{
     if (err) {

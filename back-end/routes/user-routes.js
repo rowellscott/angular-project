@@ -6,16 +6,6 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user-model')
 const Visit = require('../models/visit-model')
 
-// function checkDoctor(){
-//   return function(req, res, next){
-//     if(req.user === true && req.user.role === "Doctor"){
-//       return next();
-//     } else {
-//       res.status(401).json({ message: 'Unauthorized Access'});
-//     }
-//   }
-// }
-
 //Create New Patient
 userRoutes.post('/api/users/new', (req, res, next)=>{
   if(!req.user){
@@ -27,6 +17,12 @@ userRoutes.post('/api/users/new', (req, res, next)=>{
    if(req.user.role !== 'Doctor'){
     res.status(401).json({message: "Unauthorized Access"});
     return;
+  }
+
+  //Verify This Is the User's Profile
+  if(req.params.id !== req.user._id.toString()){
+    res.status(401).json({message: "Unauthorized Access"});
+    return
   }
 
   //Check if Patient Is in Database
@@ -51,6 +47,10 @@ userRoutes.post('/api/users/new', (req, res, next)=>{
         firstName: req.body.patientFirstName,
         lastName: req.body.patientLastName, 
         address: req.body.patientAddress,
+        city: req.body.patientCity,
+        state: req.body.patientState, 
+        zip: req.body.patientZip,
+        gender: req.body.patientGender,
         insurance_co: req.body.patientInsuranceCo,
       });
       
@@ -66,6 +66,10 @@ userRoutes.post('/api/users/new', (req, res, next)=>{
         firstNameError: newPatient.errors.firstName,
         lastNameError: newPatient.errors.lasttName,
         addressError: newPatient.errors.address,
+        cityError: newPatient.errors.city,
+        stateError: newPatient.errors.state,
+        zipError: newPatient.errors.zip,
+        genderError: newPatient.errors.gender,
         insuranceCoError: newPatient.errors.insurance_co,
       });
       return;
@@ -92,6 +96,13 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
       return;
   }
 
+  //Verify This Is the User's Profile
+    if  (req.params.id !== req.user._id.toString()){
+      res.status(401).json({message: "Unauthorized Access"});
+      return
+    }
+
+    if( req.user.role==="Doctor"){
     // If Patient tries to view
     if(req.user.role !== 'Doctor'){
       res.status(401).json({message: "Unauthorized Access"});
@@ -108,9 +119,32 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
     //Find All Patients Data By Id
       User.find({'_id': {$in: clientIds}
       }, (err, clients) =>{
+        if(err){
+          res.status(500).json({message:"Clients List Not Found"});
+          return
+        }
         res.status(200).json(clients)
       })
   });
+  }
+
+  if( req.user.role==="Patient"){
+    
+    if(req.user.role !== 'Patient'){
+      res.status(401).json({message: "Unauthorized Access"});
+      return;
+    }
+
+    //Find Latest Visit For Patient and Send to Front-End
+    Visit.findOne({'patient_id': req.params.id}).sort({"updatedAt": -1}).exec((err, latestVisit)=>{
+        if(err){
+          res.status(500).json({message:"Latest Visit Not Found"});
+          return
+        }
+        console.log(latestVisit)
+        res.status(200).json(latestVisit)
+    });
+  }
 });
 
 //Doctor, Patient View Profile
@@ -123,6 +157,12 @@ userRoutes.get('/api/users/:id/edit', (req, res, next)=>{
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
+  }
+
+  //Verify This Is the User's Profile
+  if(req.params.id !== req.user._id.toString()){
+    res.status(401).json({message: "Unauthorized Access"});
+    return
   }
 
   User.findById(req.params.id, (err, theUser)=>{
@@ -147,18 +187,44 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
     return;
   }
 
+  //Verify This Is the User's Profile
+  if (req.params.id !== req.user._id.toString()){
+    res.status(401).json({message: "Unauthorized Access"});
+    return;
+  }
+
     //Change Password
     // //Hash Password
     // const salt = bcrypt.genSaltSync(10);
-    // const hashedPassword = bcrypt.hashSync(req.body.changePassword, salt)
+    // const hashedPassword = bcrypt.hashSync(req.body.editedPassword, salt)
   
-    const updates = {
-    username: req.body.editedUsername,
-    firstName: req.body.editedFirstName,
-    lastName: req.body.editedLastName,
-    address: req.body.editedAddress,
-    insurance_co: req.body.editedInsuranceCo
-  }
+  if (req.user.role==="Patient"){
+      const updates = {
+        username: req.body.editedUsername,
+        firstName: req.body.editedFirstName,
+        lastName: req.body.editedLastName,
+        address: req.body.editedAddress,
+        city: req.body.editedCity,
+        state: req.body.editedState,
+        zip: req.body.editedZip,
+        gender: req.body.editedGender,
+        insurance_co: req.body.editedInsuranceCo
+      }
+    }
+
+    //Without Insurance
+    if (req.user.role==="Doctor"){
+      const updates = {
+        username: req.body.editedUsername,
+        firstName: req.body.editedFirstName,
+        lastName: req.body.editedLastName,
+        address: req.body.editedAddress,
+        city: req.body.editedCity,
+        state: req.body.editedState,
+        zip: req.body.editedZip,
+      }
+    }
+
 
   User.findByIdAndUpdate(req.params.id, updates, err =>{
     if (err) {
@@ -189,10 +255,20 @@ userRoutes.delete("/api/users/:id/delete", (req, res, next)=>{
       return;
     }
 
+    //Wouldn't Do In Reality, Inserted For Example Purposes. Remove All Records Associated With Patient
+    Visit.remove({'patient_id': req.params.id}, err => {
+      if (err) {
+        res.json(err);
+        return;
+      }
+    });
+
     res.json({
         message: "User Removed From Database"
     });
   });
+
+  
 });
 
 module.exports = userRoutes;

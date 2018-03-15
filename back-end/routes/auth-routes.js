@@ -13,15 +13,7 @@ authRoutes.post('/api/signup', (req, res, next)=>{
         return;
       }
       
-      //Check if User Already Exists By First Name and Last Name
-      // User.find({“firstName: signUpFirstName, lastName: signUpLastName} => (err, user) {
-      //   if(user){
-      //   res.status(400).json({message: “User Already Exists”});
-      // }	
-      
-      // }
-
-      User.findOne({ username: req.body.signUpUsername }, (err, userFromDb)=>{
+     User.findOne({ username: req.body.signUpUsername }, (err, userFromDb)=>{
           // If error finding username, return error
           if(err){
             res.status(500).json({message: "Username check went wrong"});
@@ -48,12 +40,15 @@ authRoutes.post('/api/signup', (req, res, next)=>{
 
             //Define User
             const theUser = new User({
-            username: req.body.signUpUsername, 
-            encryptedPassword: hashedPassword,
-            firstName: req.body.signUpFirstName,
-            lastName: req.body.signUpLastName, 
-            address: req.body.signUpAddress,
-            role: req.body.signUpRole,
+              username: req.body.signUpUsername, 
+              encryptedPassword: hashedPassword,
+              firstName: req.body.signUpFirstName,
+              lastName: req.body.signUpLastName, 
+              address: req.body.signUpAddress,
+              city: req.body.signUpCity,
+              state: req.body.signUpState,
+              zip: req.body.signUpZip,
+              role: req.body.signUpRole,
           });
         
           //Save The User To Database
