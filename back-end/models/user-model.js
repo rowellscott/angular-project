@@ -52,7 +52,6 @@ const UserSchema = new Schema({
     insurance_co:{
       type:String
     },
-
     //Role Selection
     role: {
       type: String, 

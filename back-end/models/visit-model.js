@@ -2,9 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const VisitSchema = new Schema({
-    temperature: {
+    temperatureDeg: {
+      type: Number,
+      required: true,
+      min: 90,
+      max: 110
+    },
+    temperatureScale:{
       type: String,
-      required: true
+      required: true,
+      enum: ["C", "F"]
     },
     height: {
       type: String,
