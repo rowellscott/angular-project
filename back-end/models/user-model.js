@@ -36,19 +36,19 @@ const UserSchema = new Schema({
       type: Number,
       required: true
     },
-    // email:{
+    // email: {
     //   type: mongoose.SchemaTypes.Email, 
-    //   required: true
+    //   required: [true, 'Invalid Email Address']
     // },
     // phone:{
     //   type: String,
     //   required: true
     // },
     //Patient Fields
-    // gender:{
-    //   type: String,
-    //   enum: ["M", "F"],
-    // },
+    gender:{
+      type: String,
+      enum: ["M", "F"],
+    },
     insurance_co:{
       type:String
     },
