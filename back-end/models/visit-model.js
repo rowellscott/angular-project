@@ -9,9 +9,9 @@ const VisitSchema = new Schema({
       max: 110
     },
     temperatureScale:{
-        type: String,
-        required: true,
-        enums: ["C", "F"]
+      type: String,
+      required: true,
+      enum: ["C", "F"]
     },
     height: {
       type: String,

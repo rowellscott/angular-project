@@ -40,9 +40,6 @@ const UserSchema = new Schema({
     insurance_co:{
       type:String
     },
-    // doctor_id:{
-    //   type: mongoose.SchemaTypes.ObjectId,
-    // },
 
     //Role Selection
     role: {
