@@ -96,9 +96,6 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
       return;
   }
 
-<<<<<<< HEAD
-  if(req.user.role === "Doctor"){
-=======
   //Verify This Is the User's Profile
     if  (req.params.id !== req.user._id.toString()){
       res.status(401).json({message: "Unauthorized Access"});
@@ -106,7 +103,6 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
     }
 
     if( req.user.role==="Doctor"){
->>>>>>> patient-routes
     // If Patient tries to view
     if(req.user.role !== 'Doctor'){
       res.status(401).json({message: "Unauthorized Access"});
@@ -129,26 +125,6 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
         }
         res.status(200).json(clients)
       })
-<<<<<<< HEAD
-    })
-  };
-
-  if(req.user.role === "Patient"){
-    // Don't Let Doctors View Patient route
-    // if(req.user.role !== 'Patient'){
-    //   res.status(401).json({message: "Unauthorized Access"});
-    //   return;
-    // }
-
-      User.findById(req.params.id, (err, thePatient =>{
-        if (err){
-          res.status(500).json({message:"Error Finding Patient" });
-          return;
-        }
-        
-        res.status(200).json(thePatient)
-      }))
-=======
   });
   }
 
@@ -168,7 +144,6 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
         console.log(latestVisit)
         res.status(200).json(latestVisit)
     });
->>>>>>> patient-routes
   }
 });
 

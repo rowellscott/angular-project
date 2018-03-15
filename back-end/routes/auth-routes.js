@@ -25,24 +25,6 @@ authRoutes.post('/api/signup', (req, res, next)=>{
               res.status(400).json({message: "Username taken. Choose another one."});
               return;
           }
-<<<<<<< HEAD
-        
-          //Hash Password
-          const salt = bcrypt.genSaltSync(10);
-          const hashedPassword = bcrypt.hashSync(req.body.signUpPassword, salt)
-
-          //Define User
-          const theUser = new User({
-            username: req.body.signUpUsername, 
-            encryptedPassword: hashedPassword,
-            firstName: req.body.signUpFirstName,
-            lastName: req.body.signUpLastName, 
-            address: req.body.signUpAddress,
-            city: req.body.signUpCity,
-            state: req.body.signUpState,
-            zip: req.body.signUpZip,
-            role: req.body.signUpRole,
-=======
           
           //If User Signing Up is Doctor
           if (req.body.signUpRole === "Doctor"){
@@ -67,7 +49,6 @@ authRoutes.post('/api/signup', (req, res, next)=>{
               state: req.body.signUpState,
               zip: req.body.signUpZip,
               role: req.body.signUpRole,
->>>>>>> patient-routes
           });
         
           //Save The User To Database
