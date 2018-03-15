@@ -92,6 +92,7 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
       return;
   }
 
+  if(req.user.role === "Doctor"){
     // If Patient tries to view
     if(req.user.role !== 'Doctor'){
       res.status(401).json({message: "Unauthorized Access"});
@@ -110,7 +111,25 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
       }, (err, clients) =>{
         res.status(200).json(clients)
       })
-  });
+    })
+  };
+
+  if(req.user.role === "Patient"){
+    // Don't Let Doctors View Patient route
+    // if(req.user.role !== 'Patient'){
+    //   res.status(401).json({message: "Unauthorized Access"});
+    //   return;
+    // }
+
+      User.findById(req.params.id, (err, thePatient =>{
+        if (err){
+          res.status(500).json({message:"Error Finding Patient" });
+          return;
+        }
+        
+        res.status(200).json(thePatient)
+      }))
+  }
 });
 
 //Doctor, Patient View Profile

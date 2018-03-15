@@ -37,6 +37,9 @@ authRoutes.post('/api/signup', (req, res, next)=>{
             firstName: req.body.signUpFirstName,
             lastName: req.body.signUpLastName, 
             address: req.body.signUpAddress,
+            city: req.body.signUpCity,
+            state: req.body.signUpState,
+            zip: req.body.signUpZip,
             role: req.body.signUpRole,
           });
         

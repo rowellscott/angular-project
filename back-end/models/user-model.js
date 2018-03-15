@@ -24,6 +24,18 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
+    city: {
+      type: String, 
+      required: true
+    },
+    state: {
+      type: String,
+      required: true
+    },
+    zip: {
+      type: Number,
+      required: true
+    },
     // email:{
     //   type: mongoose.SchemaTypes.Email, 
     //   required: true
