@@ -27,7 +27,7 @@ export class AuthService {
     res => res.json());
   }
 
-  login(componentInfo){
+  login(componentInfo) {
     return this.myHttp.post(
         `${environment.apiBase}/api/login`,
         // Form Body To Send to Backend
@@ -40,5 +40,27 @@ export class AuthService {
         { withCredentials: true}
       ).toPromise()
       .then(res => res.json());
+  }
+
+  checklogin() {
+    return this.myHttp
+    .get(
+      `${environment.apiBase}/api/checklogin`,
+    { withCredentials: true}
+    )
+    .toPromise()
+    .then(res => res.json());
+  }
+
+
+  logout() {
+    return this.myHttp
+    .post(
+      `${environment.apiBase}/api/logout`,
+      {},
+      { withCredentials: true }
+    )
+    .toPromise()
+    .then((res => res.json());
   }
 }

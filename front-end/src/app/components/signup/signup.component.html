@@ -43,8 +43,14 @@
     <input type="text" name="usernameValue" [(ngModel)]="signUpInfo.username" class="form-group">
   
     <label for="passwordValue">Password:</label>
-    <input type="text" name="passwordValue" [(ngModel)]="signUpInfo.password" class="form-group">
-</div>
+    <input type="password" name="passwordValue" [(ngModel)]="signUpInfo.password" class="form-group">
+
+    <label for="firstNameValue">Name:</label>
+    <input type="text" name="firstNameValue" [(ngModel)]="signUpInfo.firstName" class="form-group">
+  
+    <label for="lastNameValue">Last Name:</label>
+    <input type="text" name="lastNameValue" [(ngModel)]="signUpInfo.lastName" class="form-group">
+  </div>
 
 <button type="submit">Sign Up</button>
 </form>

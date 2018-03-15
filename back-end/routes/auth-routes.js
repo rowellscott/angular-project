@@ -78,6 +78,10 @@ authRoutes.post('/api/signup', (req, res, next)=>{
         if (req.body.signUpRole === "Patient"){
         //Find Patient in Database
           User.find({"firstName": req.body.signUpFirstName, "lastName": req.body.signUpLastName}, (err, user)  => {
+            if (err){
+              return res.status(400).json({message: 'Error Finding User'})
+            }
+            console.log(user)
             //If Patient Not In Database, Deny SignUp
             if (!user){
             res.status(400).json({message: "Unauthorized"})
@@ -89,7 +93,6 @@ authRoutes.post('/api/signup', (req, res, next)=>{
           } else {	
             const salt = bcrypt.genSaltSync(10);
             const hashedPassword = bcrypt.hashSync(req.body.signUpPassword, salt)
-
           
             //Define User
             const updates = {
@@ -113,9 +116,9 @@ authRoutes.post('/api/signup', (req, res, next)=>{
 
          //Clear encryptedPassword Before Sending
         // (From Request Object Only, Not Database) 
-          clientSignUp.encryptedPassword = undefined;
+          // clientSignUp.encryptedPassword = undefined;
           
-          res.status(200).json({message: "Username and Password Successfully Added"})
+          res.status(200).json({message: 'Username and Password Added to Client!'})
           });
         }
       });
