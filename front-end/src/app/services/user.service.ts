@@ -17,6 +17,16 @@ export class UserService {
     .map(res => res.json());
   }
 
+  createClient(clientData){
+      return this.myHttp.post(`${environment.apiBase}/api/users/new`,
+      clientData,
+      {
+        withCredentials: true
+      })
+      .toPromise()
+      .then(res => res.json());
+  }
+
   getProfile(id) {
     return this.myHttp.get(`${environment.apiBase}/api/users/${id}/edit`,
   { withCredentials: true
@@ -26,7 +36,7 @@ export class UserService {
   }
 
   updateUser(id, updates) {
-    return this.myHttp.put(`${environment.apiBase}/api/users/${id}/edit`,
+    return this.myHttp.put(`${environment.apiBase}/api/users/${id}/edit`, updates,
   {
     withCredentials: true
   })

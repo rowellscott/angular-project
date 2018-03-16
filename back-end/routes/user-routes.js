@@ -20,10 +20,10 @@ userRoutes.post('/api/users/new', (req, res, next)=>{
   }
 
   //Verify This Is the User's Profile
-  if(req.params.id !== req.user._id.toString()){
-    res.status(401).json({message: "Unauthorized Access"});
-    return
-  }
+  // if(req.params.id !== req.user._id.toString()){
+  //   res.status(401).json({message: "Unauthorized Access"});
+  //   return
+  // }
 
   //Check if Patient Is in Database
   User.findOne({
@@ -181,6 +181,7 @@ userRoutes.get('/api/users/:id/edit', (req, res, next)=>{
 
 //Doctor, Patient Edit Profile
 userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
+  console.log(req.user)
   if(!req.user){
     res.status(401).json({message: "Log In To Edit"});
     return;
@@ -214,6 +215,17 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
         gender: req.body.updatedGender,
         insurance_co: req.body.updatedInsuranceCo
       }
+
+      User.findByIdAndUpdate(req.params.id, updates, err =>{
+        if (err) {
+          res.json(err);
+          return;
+        }
+    
+        res.json({
+          message: "User updated successfully"
+        });
+      })
     }
 
     //Without Insurance
@@ -227,8 +239,9 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
         state: req.body.updatedState,
         zip: req.body.updatedZip,
         gender: req.body.updatedGender,
+        insurance_co: req.body.updatedInsuranceCo
       }
-    }
+   
 
 
   User.findByIdAndUpdate(req.params.id, updates, err =>{
@@ -240,7 +253,8 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
     res.json({
       message: "User updated successfully"
     });
-  });
+  })
+};
 });
 
 // Delete a User - If Need

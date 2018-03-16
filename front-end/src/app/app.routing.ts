@@ -4,6 +4,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NewClientComponent } from './components/new-client/new-client.component'
 
 const routes: Routes = [
   { path: 'signup',
@@ -15,9 +16,12 @@ const routes: Routes = [
   { path: 'users/:id',
     component: UsersComponent,
   },
+  { path: 'users/:id/newClient',
+    component: NewClientComponent,
+  },
   { path: 'users/:id/edit',
     component: ProfileComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

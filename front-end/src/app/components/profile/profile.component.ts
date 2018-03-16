@@ -8,20 +8,22 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: Object;
-  profile: Object;
+  user = <any>{};
+  profile = <any>{};
 
-  updatedUsername: String;
-  updatedFirstName: String;
-  updatedLastName: String;
-  updatedGender: String;
-  updatedAddress: String;
-  updatedCity: String;
-  updatedState: String;
-  updatedZip: Number;
-  updatedInsuranceCo: String;
+  // updatedUsername: String;
+  // updatedFirstName: String;
+  // updatedLastName: String;
+  // updatedGender: String;
+  // updatedAddress: String;
+  // updatedCity: String;
+  // updatedState: String;
+  // updatedZip: Number;
+  // updatedInsuranceCo: String;
 
-  updatedUser = {};
+  updatedUser: Object = {};
+
+  saveError=""; 
 
   constructor(
     private myUser: UserService,
@@ -36,7 +38,7 @@ export class ProfileComponent implements OnInit {
     // If successful, logged in
     .then(resultFromApi => {
       this.user = resultFromApi;
-      console.log(this.user)
+      console.log(this.user);
     })
     // Send Error To console
     .catch(err => {
@@ -62,40 +64,38 @@ export class ProfileComponent implements OnInit {
     }
 
     updateProfile(id, formData) {
-      //
-      //Get Data From Form
-      const formInfo = formData.form.controls;
-      this.updatedUsername = formInfo.updatedUsername.value;
-      this.updatedFirstName = formInfo.updatedFirstName.value;
-      this.updatedLastName = formInfo.updatedLastName.value;
-      this.updatedGender = this.profile.gender;
-      this.updatedAddress = formInfo.updatedAddress.value;
-      this.updatedCity = formInfo.updatedCity.value;
-      this.updatedState = formInfo.updatedState.value;
-      this.updatedZip = formInfo.updatedZip.value;
-      if (this.profile.role==="Patient"){
-            this.updatedInsuranceCo = formInfo.updatedInsuranceCo.value;
-        }
-      //Send Updates To Api
+      // const formInfo = formData.form.controls;
+      // this.updatedUsername = formInfo.updatedUsername.value;
+      // this.updatedFirstName = formInfo.updatedFirstName.value;
+      // this.updatedLastName = formInfo.updatedLastName.value;
+      // this.updatedGender = this.profile.gender;
+      // this.updatedAddress = formInfo.updatedAddress.value;
+      // this.updatedCity = formInfo.updatedCity.value;
+      // this.updatedState = formInfo.updatedState.value;
+      // this.updatedZip = formInfo.updatedZip.value;
+      // if (this.profile.role==="Patient"){
+      //     this.updatedInsuranceCo = formInfo.updatedInsuranceCo.value;
+      //   }
+      // //Send Updates To Api
       this.sendUpdatesToApi(id);
     }
 
     sendUpdatesToApi(id) {
       this.updatedUser = {
-        updatedUsername: this.updatedUsername,
-        updatedFirstName: this.updatedFirstName,
-        updatedLastName: this.updatedLastName,
+        updatedUsername: this.profile.username,
+        updatedFirstName: this.profile.firstName,
+        updatedLastName: this.profile.lastName,
         updatedGender: this.profile.gender,
-        updatedAddress: this.updatedAddress,
-        updatedCity: this.updatedCity,
-        updatedState: this.updatedState,
-        updatedZip: this.updatedZip,
-        updatedInsuranceCo: this.updatedInsuranceCo
+        updatedAddress: this.profile.address,
+        updatedCity: this.profile.city,
+        updatedState: this.profile.state,
+        updatedZip: this.profile.zip,
+        updatedInsuranceCo: this.profile.insurance_co
       };
       this.myUser.updateUser(id, this.updatedUser)
       .toPromise()
       .then( res => {
-        this.myRouter.navigate(['/users/ ' + id]);
+        this.myRouter.navigate(['/users/', id]);
       })
       .catch( err => {
         console.log('Error Updating User', err);
@@ -116,6 +116,3 @@ export class ProfileComponent implements OnInit {
     }
     }
 
-
-
-}

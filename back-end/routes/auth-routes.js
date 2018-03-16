@@ -167,6 +167,7 @@ authRoutes.post("/api/logout", (req, res, next)=>{
 authRoutes.get('/api/checklogin', (req, res, next)=>{
     if (req.isAuthenticated()) {
       res.status(200).json(req.user);
+      console.log("user from check: ", req.user)
       return;
     }
     res.status(401).json({ message: 'Unauthorized Access'});
