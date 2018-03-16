@@ -68,15 +68,16 @@ export class ProfileComponent implements OnInit {
       this.updatedUsername = formInfo.updatedUsername.value;
       this.updatedFirstName = formInfo.updatedFirstName.value;
       this.updatedLastName = formInfo.updatedLastName.value;
-      this.updatedGender = formInfo.updatedGender.value;
+      this.updatedGender = this.profile.gender;
       this.updatedAddress = formInfo.updatedAddress.value;
       this.updatedCity = formInfo.updatedCity.value;
       this.updatedState = formInfo.updatedState.value;
       this.updatedZip = formInfo.updatedZip.value;
-      this.updatedInsuranceCo = formInfo.updatedInsuranceCo.value;
-      
+      if (this.profile.role==="Patient"){
+            this.updatedInsuranceCo = formInfo.updatedInsuranceCo.value;
+        }
       //Send Updates To Api
-      this.sendUpdatesToApi(id)
+      this.sendUpdatesToApi(id);
     }
 
     sendUpdatesToApi(id) {
@@ -84,7 +85,7 @@ export class ProfileComponent implements OnInit {
         updatedUsername: this.updatedUsername,
         updatedFirstName: this.updatedFirstName,
         updatedLastName: this.updatedLastName,
-        updatedGender: this.updatedGender,
+        updatedGender: this.profile.gender,
         updatedAddress: this.updatedAddress,
         updatedCity: this.updatedCity,
         updatedState: this.updatedState,

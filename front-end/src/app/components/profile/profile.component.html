@@ -8,7 +8,7 @@
   <li>City: {{profile.city}}</li>
   <li>State: {{profile.state}}</li>
   <li>Zip: {{profile.zip}}</li>
-  <li *ngIf="profile.role==='Patient'">Insurance: {{profile.insurance_co}}</li>
+  <li *ngIf="user.role==='Patient'">Insurance: {{profile.insurance_co}}</li>
 </ul>
 
 <h3>Edit Profile</h3>
@@ -25,9 +25,9 @@
   <input id="last-name" type="text" [(ngModel)]="updatedLastName" name="updatedLastName" 
   value="{{ profile.lastName }}" class="form-control">
   <br>
- <div class="gender-radio-buttons">
+ <!-- <div class="gender-radio-buttons"> -->
     
-    <div *ngIf="profile.gender==='M'">
+    <!-- <div *ngIf="profile.gender==='M'">
       <label>Gender:</label>
       <br>
       <label for="gender-male">M</label>
@@ -36,10 +36,10 @@
       <label for="gender-female">F</label>
       <input id="gender-female" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
       value="F" class="form-control">
-    </div>
+    </div> -->
   
     <!--  Necessary? -->
-    <div *ngIf="profile.gender==='F'">
+    <!-- <div *ngIf="profile.gender==='F'">
       <label for="gender-male">Gender - M:</label>
         <input id="gender-male" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
         value="M" class="form-control">
@@ -47,7 +47,7 @@
         <input id="gender-female" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
         value="F" class="form-control" checked="checked">
     </div>
-  </div>
+  </div> -->
 
   <label for="address">Address:</label>
   <input id="address" type="text" [(ngModel)]="updatedAddress" name="updatedAddress" 
@@ -71,6 +71,6 @@
     <input *ngIf="profile.role==='Patient'" id="insurance-co" type="text" [(ngModel)]="updatedInsuranceCo" name="updatedInsuranceCo" 
     value="{{profile.insurance_co}}" class="form-control">
   <!-- </div>   -->
-  <button>Save Updates</button>
+  <button type="submit">Save Updates</button>
   </form>
-  <button (click)="deleteThisUser()">Delete User</button>
+  <button (click)="deleteThisUser()">Delete Account</button>

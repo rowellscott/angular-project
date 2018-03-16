@@ -1,24 +1,29 @@
 <!-- Check If No Clients Or Visits -->
-<div *ngIf="!clients.length">
-  <p>No Data</p>
-</div>
+
 
 
 
 <!-- Check For Doctor -->
-<div *ngIf="clients[0].role">
+<div *ngIf="user.role==='Doctor'">
   <h3>Clients</h3>
   <p *ngFor="let client of clients">
   {{ client.firstName}}
   {{ client.lastName }}
-</p>
+  </p>
+
+  <div *ngIf="!clients.length">
+    <p>No Clients</p>
+  </div>
 </div>
 
 <!-- Check for Patient -->
-<div *ngIf="!clients[0].role">
+<div *ngIf="user.role==='Patient'">
   <h3>Latest Visit</h3>
   {{ clients[0].assessment}}
   {{ clients[0].treatment }}
+  <div *ngIf="!clients.length">
+    <p>No Visits</p>
+  </div>
 </div>
 
 <a [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
