@@ -142,7 +142,11 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
           return
         }
         console.log(latestVisit)
-        res.status(200).json(latestVisit)
+
+        //Convert Object To Array with Object For Easier Manipulation in Angular
+        var array = new Set([latestVisit]);
+        var objectArray = Array.from(array)
+        res.status(200).json(objectArray)
     });
   }
 });

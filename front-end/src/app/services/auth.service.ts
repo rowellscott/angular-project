@@ -39,7 +39,8 @@ export class AuthService {
         // Send Cookies Across Domains
         { withCredentials: true}
       ).toPromise()
-      .then(res => res.json());
+      .then(res => res.json()
+    );
   }
 
   checklogin() {
@@ -61,6 +62,6 @@ export class AuthService {
       { withCredentials: true }
     )
     .toPromise()
-    .then((res => res.json());
+    .then(res => res.json());
   }
 }
