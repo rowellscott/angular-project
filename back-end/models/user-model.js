@@ -34,7 +34,9 @@ const UserSchema = new Schema({
     },
     zip: {
       type: Number,
-      required: true
+      required: true,
+      min: 1001,
+      max: 99999
     },
     // email: {
     //   type: mongoose.SchemaTypes.Email, 

@@ -1,3 +1,10 @@
+<!-- Check If No Clients Or Visits -->
+<div *ngIf="!clients.length">
+  <p>No Data</p>
+</div>
+
+
+
 <!-- Check For Doctor -->
 <div *ngIf="clients[0].role">
   <h3>Clients</h3>

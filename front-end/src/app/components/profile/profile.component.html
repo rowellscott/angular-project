@@ -8,8 +8,69 @@
   <li>City: {{profile.city}}</li>
   <li>State: {{profile.state}}</li>
   <li>Zip: {{profile.zip}}</li>
-  <li>Insurance: {{profile.insurance_co}}</li>
+  <li *ngIf="profile.role==='Patient'">Insurance: {{profile.insurance_co}}</li>
 </ul>
 
 <h3>Edit Profile</h3>
-<form (ngSubmit)="update(myForm" #myForm='ngForm'
+<form (ngSubmit)="updateProfile(profile._id, myForm)" #myForm='ngForm'>
+  <label for="username">Username:</label>
+  <input id="username" type="text" [(ngModel)]="updatedUsername" name="updatedUsername" 
+  value="{{ profile.username }}" class="form-control">
+  <br>
+  <label for="first-name">Name:</label>
+  <input id="first-name" type="text" [(ngModel)]="updatedFirstName" name="updatedFirstName" 
+  value="{{ profile.firstName }}" class="form-control">
+  <br>
+  <label for="last-name">Last Name:</label>
+  <input id="last-name" type="text" [(ngModel)]="updatedLastName" name="updatedLastName" 
+  value="{{ profile.lastName }}" class="form-control">
+  <br>
+ <div class="gender-radio-buttons">
+    
+    <div *ngIf="profile.gender==='M'">
+      <label>Gender:</label>
+      <br>
+      <label for="gender-male">M</label>
+      <input id="gender-male" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+      value="M" class="form-control" checked="checked">
+      <label for="gender-female">F</label>
+      <input id="gender-female" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+      value="F" class="form-control">
+    </div>
+  
+    <!--  Necessary? -->
+    <div *ngIf="profile.gender==='F'">
+      <label for="gender-male">Gender - M:</label>
+        <input id="gender-male" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+        value="M" class="form-control">
+        <label for="gender-female">Gender - F:</label>
+        <input id="gender-female" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+        value="F" class="form-control" checked="checked">
+    </div>
+  </div>
+
+  <label for="address">Address:</label>
+  <input id="address" type="text" [(ngModel)]="updatedAddress" name="updatedAddress" 
+  value="{{ profile.address }}" class="form-control">
+  <br>
+  <label for="city">City:</label>
+  <input id="city" type="text" [(ngModel)]="updatedCity" name="updatedCity" 
+  value="{{ profile.city }}" class="form-control">
+  <br>
+  <label for="state">State:</label>
+  <input id="state" type="text" [(ngModel)]="updatedState" name="updatedState" 
+  value="{{ profile.state }}" class="form-control">
+  <br>
+  <label for="zip">Zip:</label>
+  <input id="zip" type="number" [(ngModel)]="updatedZip" name="updatedZip" 
+  value="{{ profile.zip }}" class="form-control">
+  <br>
+
+  <!-- <div *ngIf="profile.role === 'Patient'"> -->
+    <label *ngIf="profile.role==='Patient'" for="insurance-co">Insurance:</label>
+    <input *ngIf="profile.role==='Patient'" id="insurance-co" type="text" [(ngModel)]="updatedInsuranceCo" name="updatedInsuranceCo" 
+    value="{{profile.insurance_co}}" class="form-control">
+  <!-- </div>   -->
+  <button>Save Updates</button>
+  </form>
+  <button (click)="deleteThisUser()">Delete User</button>

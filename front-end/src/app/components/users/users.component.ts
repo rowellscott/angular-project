@@ -32,6 +32,7 @@ export class UsersComponent implements OnInit {
     // If successful, logged in 
     .then(resultFromApi => {
       this.user = resultFromApi;
+      console.log(this.user)
     })
     // Send Error To console
     .catch(err =>{

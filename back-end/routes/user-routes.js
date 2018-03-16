@@ -204,28 +204,29 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
   
   if (req.user.role==="Patient"){
       const updates = {
-        username: req.body.editedUsername,
-        firstName: req.body.editedFirstName,
-        lastName: req.body.editedLastName,
-        address: req.body.editedAddress,
-        city: req.body.editedCity,
-        state: req.body.editedState,
-        zip: req.body.editedZip,
-        gender: req.body.editedGender,
-        insurance_co: req.body.editedInsuranceCo
+        username: req.body.updatedUsername,
+        firstName: req.body.updatedFirstName,
+        lastName: req.body.updatedLastName,
+        address: req.body.updatedAddress,
+        city: req.body.updatedCity,
+        state: req.body.updatedState,
+        zip: req.body.updatedZip,
+        gender: req.body.updatedGender,
+        insurance_co: req.body.updatedInsuranceCo
       }
     }
 
     //Without Insurance
     if (req.user.role==="Doctor"){
       const updates = {
-        username: req.body.editedUsername,
-        firstName: req.body.editedFirstName,
-        lastName: req.body.editedLastName,
-        address: req.body.editedAddress,
-        city: req.body.editedCity,
-        state: req.body.editedState,
-        zip: req.body.editedZip,
+        username: req.body.updatedUsername,
+        firstName: req.body.updatedFirstName,
+        lastName: req.body.updatedLastName,
+        address: req.body.updatedAddress,
+        city: req.body.updatedCity,
+        state: req.body.updatedState,
+        zip: req.body.updatedZip,
+        gender: req.body.updatedGender,
       }
     }
 

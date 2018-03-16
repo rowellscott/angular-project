@@ -8,16 +8,16 @@ import 'rxjs/add/operator/map';
 export class UserService {
 
   constructor(private myHttp: Http) { }
-  
+
   getUser(id){
-    return this.myHttp.get(`${environment.apiBase}/api/users/${id}`, 
+    return this.myHttp.get(`${environment.apiBase}/api/users/${id}`,
     {
       withCredentials: true
     })
     .map(res => res.json());
   }
 
-  getProfile(id){
+  getProfile(id) {
     return this.myHttp.get(`${environment.apiBase}/api/users/${id}/edit`,
   { withCredentials: true
   })
@@ -25,11 +25,19 @@ export class UserService {
   .then(res => res.json());
   }
 
-  updateUser(id, updates){
+  updateUser(id, updates) {
     return this.myHttp.put(`${environment.apiBase}/api/users/${id}/edit`,
   {
     withCredentials: true
   })
   .map(res => res.json());
   }
+
+  deleteUser(id){
+    return this.myHttp.delete(`${environment.apiBase}/api/users/${id}/delete`,
+    {
+      withCredentials: true
+    })
+    .toPromise();
+   }
 }
