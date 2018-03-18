@@ -1,0 +1,61 @@
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { VisitService } from '../../services/visit.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/map';
+
+@Component({
+  selector: 'app-visit-history',
+  templateUrl: './visit-history.component.html',
+  styleUrls: ['./visit-history.component.css']
+})
+export class VisitHistoryComponent implements OnInit {
+
+  constructor(
+    private myAuth: AuthService,
+    private myRouter: Router,
+    private myVisits: VisitService,
+    private route: ActivatedRoute
+
+  ) { }
+  user = <any>Object;
+  visitHistory: any;
+  patientId: String;
+
+  visitHistoryError: String;
+
+
+  ngOnInit() {
+    this.myAuth
+    .checklogin()
+    // If successful, logged in
+    .then(resultFromApi => {
+      this.user = resultFromApi;
+      console.log('Visit History user:', this.user);
+    })
+    // Send Error To console
+    .catch(err => {
+      console.log(err);
+      this.myRouter.navigate(['/']);
+    });
+    this.route.params.subscribe(
+      (params) => {
+        console.log(params['id']);
+        this.getVisits(params['id']);
+        this.patientId = params['id'];
+      });
+  }
+
+  getVisits(id) {
+    this.myVisits.getVisitHistory(id).
+    subscribe( visits => {
+      console.log('visits:', visits);
+      this.visitHistory = visits;
+      console.log(this.visitHistory)
+    },
+      () => {
+        this.visitHistoryError = 'Error Finding Visit History';
+        console.log(this.visitHistoryError);
+      });
+  }
+}

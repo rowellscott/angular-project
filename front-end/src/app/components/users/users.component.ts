@@ -67,5 +67,4 @@ export class UsersComponent implements OnInit {
           this.logoutError = 'Error Logging Out'
         });
       }
-
 }

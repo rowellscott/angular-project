@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
       this.errorMessage = '';
 
       this.myRouter.navigate(['/']);
-      // this.myRouter.navigate['/users/:id']
+      // this.myRouter.navigate(['/users/' this.user._id])
     })
     .catch(err => {
       const parsedError = err.json();

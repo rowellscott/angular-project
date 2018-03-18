@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -25,6 +26,8 @@ export class ProfileComponent implements OnInit {
 
   saveError=""; 
 
+  baseUrl = environment.apiBase;
+  
   constructor(
     private myUser: UserService,
     private myAuth: AuthService,

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
+import { FileUploader } from 'ng2-file-upload';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -13,18 +14,23 @@ import 'rxjs/add/operator/toPromise';
 
 export class NewClientComponent implements OnInit {
   newClient = {
-    patientFirstName: "",
-    patientLastName: "", 
-    patientAddress: "",
-    patientCity: "",
-    patientState: '', 
-    patientZip: "",
-    patientGender: "",
-    patientInsuranceCo: "",
-  }
+    patientFirstName: '',
+    patientLastName: '',
+    patientAddress: '',
+    patientCity: '',
+    patientState: '',
+    patientZip: Number,
+    patientGender: '',
+    patientInsuranceCo: '',
+  };
 
   user = <any>{};
   savingError: String;
+
+  myUploader = new FileUploader({
+    url: environment.apiBase + '/api/users/new',
+    itemAlias: 'patientImage'
+  });
 
   constructor(
     private myUser: UserService,
@@ -48,26 +54,71 @@ export class NewClientComponent implements OnInit {
   }
 
     saveNewClient() {
+      if (this.myUploader.getNotUploadedItems().length === 0) {
+        this.saveNewClientNoImage();
+        console.log('no image');
+      } else {
+        this.saveNewClientWithImage();
+        console.log('image');
+      }
+    }
+
+
+    saveNewClientNoImage() {
+      
       this.myUser.createClient(this.newClient)
       .then(res => {
+        console.log("Add Client res:", res);
         this.newClient = {
           patientFirstName: '',
           patientLastName: '',
           patientAddress: '',
           patientCity: '',
           patientState: '',
-          patientZip: '',
+          patientZip: Number ,
           patientGender: '',
           patientInsuranceCo: '',
         };
         this.savingError = '';
-        this.myRouter.navigate(['/users', this.user._id])
+        this.myRouter.navigate(['/visits', res._id]);
       })
       .catch( err => {
-        this.savingError = 'Error Adding Client'
+        this.savingError = 'Error Adding Client';
       });
     }
 
+    saveNewClientWithImage() {
+        this.myUploader.onBuildItemForm = (item, form) => {
+          form.append('patientFirstName', this.newClient.patientFirstName);
+          form.append('patientLastName', this.newClient.patientLastName);
+          form.append('patientAddress', this.newClient.patientAddress);
+          form.append('patientCity', this.newClient.patientCity);
+          form.append('patientState', this.newClient.patientState);
+          form.append('patientZip', this.newClient.patientZip);
+          form.append('patientGender', this.newClient.patientGender);
+          form.append('patientInsuranceCo', this.newClient.patientInsuranceCo);
+          console.log("this.newClient.patientGender: ", this.newClient.patientGender)
+        };
+      this.myUploader.onSuccessItem = (item, response) => {
+        this.newClient = {
+          patientFirstName: '',
+          patientLastName: '',
+          patientAddress: '',
+          patientCity: '',
+          patientState: '',
+          patientZip: Number,
+          patientGender: '',
+          patientInsuranceCo: '',
+        };
+        this.savingError = '';
+        this.myRouter.navigate(['/users', this.user._id]);
+      };
+      this.myUploader.onErrorItem = (item, response) => {
+        
+        this.savingError = 'Error Saving Phone With Image';
+      };
+      this.myUploader.uploadAll();
+    }
 }
 
 

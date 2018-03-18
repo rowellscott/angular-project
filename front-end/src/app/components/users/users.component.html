@@ -6,13 +6,13 @@
 <!-- Check For Doctor -->
 <div *ngIf="user.role==='Doctor'">
   <h3>Clients</h3>
-  <div *ngIf="!clients.length">
+  <div *ngIf="clients.length===0">
       <p>No Clients</p>
     </div>
 
   <p *ngFor="let client of clients">
-  {{ client.firstName}}
-  {{ client.lastName }}
+  <a [routerLink]="['/visits/' + client._id]">{{ client.firstName}} {{ client.lastName }}</a> 
+  <img [src]="baseUrl + client.image" alt="" width="150" height="150">
   </p>
   <a [routerLink]="['/users/' + user._id + '/newClient']">Add Client</a>
 </div>

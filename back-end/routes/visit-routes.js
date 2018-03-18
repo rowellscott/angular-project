@@ -6,7 +6,7 @@ const Visit = require('../models/visit-model');
 const User = require('../models/user-model')
 
 //Create New Visit. :id = patient_id
-visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
+visitRoutes.post('/api/visits/new/:id', (req, res, next)=>{
     // If There's No Session, Return Error
     if(!req.user){
       res.status(401).json({message: "Log In To Add A Visit"});
@@ -39,8 +39,12 @@ visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
     const newVisit = new Visit({
       temperatureDeg: req.body.temperatureDeg,
       temperatureScale: req.body.temperatureScale,
-      height: req.body.height, 
-      weight: req.body.weight,
+      heightNumOne: req.body.heightNumOne, 
+      heightScaleOne: req.body.heightScaleOne, 
+      heightNumTwo: req.body.heightNumTwo,
+      heightScaleTwo: req.body.heightScaleTwo,
+      weightNum: req.body.weightNum,
+      weightScale: req.body.weightScale,
       blood_pressure: req.body.bloodPressure,
       chief_complaint: req.body.chiefComplaint,
       assessment: req.body.assessment,
@@ -48,9 +52,11 @@ visitRoutes.post('/api/visits/:id/new', (req, res, next)=>{
       patient_id: req.params.id,
       doctor_id: req.user.id,
     });
-
+    console.log("newVisit:", newVisit)
     newVisit.save((err)=>{
       if(err){
+        console.log("Saving Err:",  err)
+        
           res.status(500).json({message: "Error Saving to Database" });
           return;
       }
@@ -106,7 +112,7 @@ visitRoutes.get("/api/visits/:id", (req, res, next)=>{
   });
 });
 
-//Get Individual Visit 
+//Get Individual Visit - :id = Visit Id
 visitRoutes.get("/api/visits/visit/:id", (req, res, next)=>{
   if (!req.user) {
     res.status(401).json({ message: "Log In To View Visit." });

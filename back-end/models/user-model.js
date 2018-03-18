@@ -35,8 +35,8 @@ const UserSchema = new Schema({
     zip: {
       type: Number,
       required: true,
-      min: 1001,
-      max: 99999
+      // min: 1001,
+      // max: 99999
     },
     // email: {
     //   type: mongoose.SchemaTypes.Email, 
@@ -52,7 +52,10 @@ const UserSchema = new Schema({
       enum: ["M", "F"],
     },
     insurance_co:{
-      type:String
+      type: String
+    },
+    image: {
+      type: String
     },
     //Role Selection
     role: {

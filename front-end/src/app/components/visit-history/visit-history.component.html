@@ -1,0 +1,10 @@
+
+
+
+<div *ngFor="let visit of visitHistory">
+  <p>{{ visit.assessment }}</p>
+  <p>{{ visit.treatment }}</p>
+</div>
+
+<a [routerLink]="['/users/' + user._id]">All Clients</a>
+<a [routerLink]="['/visits/new/' + patientId]">Add Visit</a>

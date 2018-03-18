@@ -2,12 +2,17 @@ var mongoose = require('mongoose');
 const express = require('express');
 const userRoutes = express.Router();
 const bcrypt = require('bcrypt');
+const multer = require('multer')
 
 const User = require('../models/user-model')
 const Visit = require('../models/visit-model')
 
+const myUploader = multer({
+  dest: __dirname + "/../public/uploads"
+});
+
 //Create New Patient
-userRoutes.post('/api/users/new', (req, res, next)=>{
+userRoutes.post('/api/users/new', myUploader.single('patientImage'), (req, res, next)=>{
   if(!req.user){
     res.status(401).json({message: "Log In To Add Client"});
     return;
@@ -53,6 +58,9 @@ userRoutes.post('/api/users/new', (req, res, next)=>{
         gender: req.body.patientGender,
         insurance_co: req.body.patientInsuranceCo,
       });
+      if(req.file){
+        newPatient.image = '/uploads/' + req.file.filename;
+      }
       
     //Save The User To Database
     newPatient.save((err)=> {

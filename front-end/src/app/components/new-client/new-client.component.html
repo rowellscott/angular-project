@@ -1,6 +1,10 @@
 <h3>Add Client</h3>
 
-<form (ngSubmit)="saveNewClient()">
+<p *ngIf="savingError" class="error">
+    {{ savingError }}
+  </p>
+
+  <form (ngSubmit)="saveNewClient()">
   <!-- <label for="username">Username:</label>
   <input id="username" type="text" [(ngModel)]="newClient.patientUsername" name="patientUsername" 
   value="" class="form-control">
@@ -44,6 +48,10 @@
   <label for="insurance-co">Insurance:</label>
   <input id="insurance-co" type="text" [(ngModel)]="newClient.patientInsuranceCo" name="patientInsuranceCo" 
     value="" class="form-control">
+  <br>
+  <label for="client-image">Client Photo (optional): </label>
+  <input id="client-image" type="file" name="patientImage" ng2FileSelect [uploader]="myUploader">
+  <br>
 
     <button>Add Client</button>
 </form>

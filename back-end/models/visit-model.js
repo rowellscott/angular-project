@@ -13,13 +13,32 @@ const VisitSchema = new Schema({
       required: true,
       enum: ["C", "F"]
     },
-    height: {
-      type: String,
+    heightNumOne: {
+      type: Number,
       required: true
     },
-    weight: {
+    heightScaleOne:{
       type: String,
+      required: true,
+      enum: ["ft", "m", "''"]
+    },
+    heightNumTwo:{
+      type: Number,
       required: true
+    },
+    heightScaleTwo:{
+      type: String,
+      required: true,
+      enum: ["in", "cm", "'"]
+    },
+    weightNum: {
+      type: Number,
+      required: true
+    },
+    weightScale:{
+      type: String,
+      required: true,
+      enum: ['lb', 'kg', 'lbs', 'kgs']
     },
     blood_pressure:{
       type: String,

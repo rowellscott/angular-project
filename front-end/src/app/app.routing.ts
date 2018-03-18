@@ -4,7 +4,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NewClientComponent } from './components/new-client/new-client.component'
+import { NewClientComponent } from './components/new-client/new-client.component';
+import { VisitHistoryComponent } from './components/visit-history/visit-history.component';
+import { NewVisitComponent } from './components/new-visit/new-visit.component';
 
 const routes: Routes = [
   { path: 'signup',
@@ -20,7 +22,15 @@ const routes: Routes = [
     component: NewClientComponent,
   },
   { path: 'users/:id/edit',
-    component: ProfileComponent },
+    component: ProfileComponent 
+  },
+  { path: 'visits/:id',
+    component: VisitHistoryComponent
+  },
+  { path: 'visits/new/:id',
+  component: NewVisitComponent
+  },
+
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
