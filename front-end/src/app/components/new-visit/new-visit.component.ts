@@ -86,7 +86,7 @@ export class NewVisitComponent implements OnInit {
       // or redirect to Patient Visit History to Confirm?
     })
     .catch(err => {
-        console.log("New Visit Error:" err);
+        console.log("New Visit Error:", err);
         this.newVisitError = "Error Saving Visit"
     });
   }

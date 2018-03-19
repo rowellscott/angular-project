@@ -9,7 +9,7 @@ export class VisitService {
 
   constructor(private myHttp: Http) { }
 
-  getVisitHistory(id){
+  getVisitHistory(id) {
     return this.myHttp.get(`${environment.apiBase}/api/visits/${id}`,
     {
       withCredentials: true
@@ -17,8 +17,17 @@ export class VisitService {
     .map(res => res.json());
   }
 
-  addNewVisit(id, newVisit){
+  addNewVisit(id, newVisit) {
     return this.myHttp.post(`${environment.apiBase}/api/visits/new/${id}`, newVisit,
+    {
+      withCredentials: true
+    })
+    .toPromise()
+    .then(res => res.json());
+  }
+
+  getDetails(id){
+    return this.myHttp.get(`${environment.apiBase}/api/visits/visit/${id}`,
     {
       withCredentials: true
     })

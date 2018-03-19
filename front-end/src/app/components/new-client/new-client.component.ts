@@ -111,7 +111,9 @@ export class NewClientComponent implements OnInit {
           patientInsuranceCo: '',
         };
         this.savingError = '';
-        this.myRouter.navigate(['/users', this.user._id]);
+        const resObj = JSON.parse(`${response}`)
+        // console.log("item:", item, "res:", response, "resJSON:", resObj);
+        this.myRouter.navigate(['/visits', resObj._id ]);
       };
       this.myUploader.onErrorItem = (item, response) => {
         

@@ -1,9 +1,13 @@
 
 
-
+<h3>Visit History</h3>
 <div *ngFor="let visit of visitHistory">
-  <p>{{ visit.assessment }}</p>
-  <p>{{ visit.treatment }}</p>
+  <a [routerLink]="['/visits/visit/' + visit._id]">Date: {{visit.createdAt | date:'MM/dd/yyyy' }} - {{ visit.assessment }}</a>
+  <hr>
+</div>
+
+<div *ngIf="visitHistory.length===0">
+  <p>No Visits</p>
 </div>
 
 <a [routerLink]="['/users/' + user._id]">All Clients</a>

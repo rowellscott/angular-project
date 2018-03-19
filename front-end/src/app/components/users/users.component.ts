@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment'
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -14,7 +15,7 @@ export class UsersComponent implements OnInit {
   // Clients for Doctor. For Patient clients = Most Recent Visit
   clients: Array<Object>;
   user: Object;
-
+  baseUrl = environment.apiBase;
   //Error Messages
   clientsError: String;
   logoutError: String;

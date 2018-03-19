@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewClientComponent } from './components/new-client/new-client.component';
 import { VisitHistoryComponent } from './components/visit-history/visit-history.component';
 import { NewVisitComponent } from './components/new-visit/new-visit.component';
+import { VisitDetailsComponent } from './components/visit-details/visit-details.component';
 
 const routes: Routes = [
   { path: 'signup',
@@ -29,6 +30,9 @@ const routes: Routes = [
   },
   { path: 'visits/new/:id',
   component: NewVisitComponent
+  },
+  { path: 'visits/visit/:id',
+  component: VisitDetailsComponent
   },
 
   { path: '**', redirectTo: '/login', pathMatch: 'full' }

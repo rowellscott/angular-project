@@ -9,7 +9,7 @@
   <li>State: {{profile.state}}</li>
   <li>Zip: {{profile.zip}}</li>
   <li *ngIf="user.role==='Patient'">Insurance: {{profile.insurance_co}}</li>
-  <li>Photo: <img [src]="baseUrl + profile.image" alt="" width="150" height="150"></li>
+  <li *ngIf="profile.image">Photo: <img [src]="baseUrl + profile.image" alt="" width="150" height="150"></li>
 </ul>
 
 

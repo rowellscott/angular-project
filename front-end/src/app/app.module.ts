@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewClientComponent } from './components/new-client/new-client.component';
 import { VisitHistoryComponent } from './components/visit-history/visit-history.component';
 import { NewVisitComponent } from './components/new-visit/new-visit.component';
+import { VisitDetailsComponent } from './components/visit-details/visit-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NewVisitComponent } from './components/new-visit/new-visit.component';
     ProfileComponent,
     NewClientComponent,
     VisitHistoryComponent,
-    NewVisitComponent
+    NewVisitComponent,
+    VisitDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -95,6 +95,7 @@ export class ProfileComponent implements OnInit {
         updatedZip: this.profile.zip,
         updatedInsuranceCo: this.profile.insurance_co
       };
+      
       this.myUser.updateUser(id, this.updatedUser)
       .toPromise()
       .then( res => {

@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit {
     this.myAuth
     .signup(this.signUpInfo)
     .then(resultFromApi => {
-       this.signUpInfo = {
+      this.signUpInfo = {
         username: '',
         password: '',
         firstName: '',

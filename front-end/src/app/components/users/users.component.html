@@ -12,7 +12,7 @@
 
   <p *ngFor="let client of clients">
   <a [routerLink]="['/visits/' + client._id]">{{ client.firstName}} {{ client.lastName }}</a> 
-  <img [src]="baseUrl + client.image" alt="" width="150" height="150">
+  <img *ngIf="client.image" [src]="baseUrl + client.image" alt="" width="150" height="150">
   </p>
   <a [routerLink]="['/users/' + user._id + '/newClient']">Add Client</a>
 </div>
@@ -22,7 +22,7 @@
   <h3>Latest Visit</h3>
   {{ clients[0].assessment}}
   {{ clients[0].treatment }}
-  <div *ngIf="!clients.length">
+  <div *ngIf="clients[0]===null">
     <p>No Visits</p>
   </div>
 </div>
