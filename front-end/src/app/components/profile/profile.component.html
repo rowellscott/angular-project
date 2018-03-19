@@ -1,4 +1,7 @@
-<h3>Profile Info</h3>
+
+<h3 *ngIf="profile.lastName.slice(-1)==='s'">{{profile.firstName}} {{profile.lastName}}' Profile</h3>
+<h3 *ngIf="profile.lastName.slice(-1)!=='s'">{{profile.firstName}} {{profile.lastName}}'s Profile</h3>
+
 <ul>
   <li>Username: {{profile.username}}</li>
   <li>Name: {{profile.firstName}}</li>

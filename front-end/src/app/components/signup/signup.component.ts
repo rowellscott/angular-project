@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-signup',
@@ -45,10 +46,13 @@ export class SignupComponent implements OnInit {
 
       this.errorMessage = '';
 
-      this.myRouter.navigate(['/']);
-      // this.myRouter.navigate(['/users/' this.user._id])
+      // this.myRouter.navigate(['/']);
+      console.log("Sign Up .then:", resultFromApi)
+      // this.myRouter.navigate(['/users/', resultFromApi._id])
+      this.myRouter.navigate(['/login']);
     })
     .catch(err => {
+      console.log("Sign Up Err in Catch:", err)
       const parsedError = err.json();
       this.errorMessage = parsedError.message;
     });

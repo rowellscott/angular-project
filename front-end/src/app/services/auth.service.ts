@@ -21,7 +21,8 @@ export class AuthService {
       signUpState: componentInfo.state,
       signUpZip: componentInfo.zip,
       signUpRole: componentInfo.role
-    }
+    },
+    { withCredentials: true }
   ).toPromise()
   .then(
     res => res.json());

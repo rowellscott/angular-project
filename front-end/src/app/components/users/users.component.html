@@ -1,32 +1,49 @@
 <!-- Check If No Clients Or Visits -->
 
-
-
-
 <!-- Check For Doctor -->
 <div *ngIf="user.role==='Doctor'">
+  <h1>{{user.firstName}} {{user.lastName}}</h1>
   <h3>Clients</h3>
   <div *ngIf="clients.length===0">
       <p>No Clients</p>
-    </div>
+  </div>
 
-  <p *ngFor="let client of clients">
-  <a [routerLink]="['/visits/' + client._id]">{{ client.firstName}} {{ client.lastName }}</a> 
-  <img *ngIf="client.image" [src]="baseUrl + client.image" alt="" width="150" height="150">
-  </p>
+
+  <h5>Search Clients</h5>
+  <div>
+    <label for="client-search">Last Name:</label>
+        <input id="client-search" placeholder="Smith"
+        [(ngModel)]="pattern">
+  </div>
+  
+  <div>
+    <label for="client-search">First Name:</label>
+        <input id="client-search" placeholder="John"
+        [(ngModel)]="patternTwo">
+  </div>
+
+
+  <div *ngFor="let client of clients | search:'lastName':pattern | search:'firstName':patternTwo">
+    <p>
+      <a [routerLink]="['/visits/' + client._id]">{{ client.firstName}} {{ client.lastName }}</a> 
+      <img *ngIf="client.image" [src]="baseUrl + client.image" alt="" width="150" height="150">
+      </p>
+  </div>
   <a [routerLink]="['/users/' + user._id + '/newClient']">Add Client</a>
 </div>
 
 <!-- Check for Patient -->
 <div *ngIf="user.role==='Patient'">
-  <h3>Latest Visit</h3>
-  {{ clients[0].assessment}}
-  {{ clients[0].treatment }}
+    <h3 *ngIf="clients[0].patient_id.lastName.slice(-1)==='s'">{{clients[0].patient_id.firstName}} {{clients[0].patient_id.lastName}}' Latest Visit</h3>
+    <h3 *ngIf="clients[0].patient_id.lastName.slice(-1)!=='s'">{{clients[0].patient_id.firstName}} {{clients[0].patient_id.lastName}}'s Latest Visit</h3>
+  <p>Assessment: {{ clients[0].assessment}}</p>
+  <p>Treatment: {{ clients[0].treatment }}</p>
   <div *ngIf="clients[0]===null">
     <p>No Visits</p>
   </div>
 </div>
 
-<a [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+<a [routerLink]="['/users/' + user._id + '/edit']">Your Profile</a>
+
 <br>
 <button (click)="logout()">Logout</button>

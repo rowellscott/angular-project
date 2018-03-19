@@ -102,7 +102,7 @@ visitRoutes.get("/api/visits/:id", (req, res, next)=>{
     return;
   }
 
-  Visit.find({"patient_id": req.params.id}, (err, theVisit)=>{
+  Visit.find({"patient_id": req.params.id}).populate("patient_id", ["firstName", "lastName"]).exec((err, theVisit)=>{
     if (err) {
       res.status(500).json({ message: "Error Finding Visits" });
       return;

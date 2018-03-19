@@ -61,6 +61,7 @@ userRoutes.post('/api/users/new', myUploader.single('patientImage'), (req, res, 
       if(req.file){
         newPatient.image = '/uploads/' + req.file.filename;
       }
+     
       
     //Save The User To Database
     newPatient.save((err)=> {
@@ -144,7 +145,7 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
     }
 
     //Find Latest Visit For Patient and Send to Front-End
-    Visit.findOne({'patient_id': req.params.id}).sort({"updatedAt": -1}).exec((err, latestVisit)=>{
+    Visit.findOne({'patient_id': req.params.id}).populate("patient_id", ["firstName", "lastName"]).sort({"updatedAt": -1}).exec((err, latestVisit)=>{
         if(err){
           res.status(500).json({message:"Latest Visit Not Found"});
           return
@@ -246,12 +247,8 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
         city: req.body.updatedCity,
         state: req.body.updatedState,
         zip: req.body.updatedZip,
-        gender: req.body.updatedGender,
-        insurance_co: req.body.updatedInsuranceCo
       }
    
-
-
   User.findByIdAndUpdate(req.params.id, updates, err =>{
     if (err) {
       res.json(err);

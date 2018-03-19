@@ -1,6 +1,9 @@
 
+<p *ngIf="visitHistoryError" class="error">
+    {{ visitHistoryError }}
+  </p>
 
-<h3>Visit History</h3>
+<h3>Visit History for {{visitHistory[0].patient_id.firstName}} {{visitHistory[0].patient_id.lastName}} </h3>
 <div *ngFor="let visit of visitHistory">
   <a [routerLink]="['/visits/visit/' + visit._id]">Date: {{visit.createdAt | date:'MM/dd/yyyy' }} - {{ visit.assessment }}</a>
   <hr>

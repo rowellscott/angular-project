@@ -19,6 +19,7 @@ import { NewClientComponent } from './components/new-client/new-client.component
 import { VisitHistoryComponent } from './components/visit-history/visit-history.component';
 import { NewVisitComponent } from './components/new-visit/new-visit.component';
 import { VisitDetailsComponent } from './components/visit-details/visit-details.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VisitDetailsComponent } from './components/visit-details/visit-details.
     NewClientComponent,
     VisitHistoryComponent,
     NewVisitComponent,
-    VisitDetailsComponent
+    VisitDetailsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

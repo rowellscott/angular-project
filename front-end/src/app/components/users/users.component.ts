@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { environment } from '../../../environments/environment'
+import { SearchPipe } from '../../pipes/search.pipe'
 import 'rxjs/add/operator/map';
+
+
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  providers:[SearchPipe]
 })
 export class UsersComponent implements OnInit {
   // Clients for Doctor. For Patient clients = Most Recent Visit
+  pattern: String = "";
+  patternTwo: String = "";
   clients: Array<Object>;
   user: Object;
   baseUrl = environment.apiBase;
@@ -25,15 +31,16 @@ export class UsersComponent implements OnInit {
     private myRouter: Router,
     private route: ActivatedRoute,
     private myAuth: AuthService,
+    private mySearch: SearchPipe
   ) { }
-
+  
   ngOnInit() {
     this.myAuth
     .checklogin()
     // If successful, logged in 
     .then(resultFromApi => {
       this.user = resultFromApi;
-      console.log(this.user)
+      console.log(this.user);
     })
     // Send Error To console
     .catch(err =>{
@@ -68,4 +75,8 @@ export class UsersComponent implements OnInit {
           this.logoutError = 'Error Logging Out'
         });
       }
+
+    // search(){
+
+    // }
 }

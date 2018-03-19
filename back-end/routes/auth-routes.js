@@ -30,9 +30,10 @@ authRoutes.post('/api/signup', (req, res, next)=>{
           if (req.body.signUpRole === "Doctor"){
             
             //Validate Address Field
-            if(!req.body.address){
-              res.status(400).json({message: "Please Fill In All Fields"})
-            }
+            // if(!req.body.signUpaddress){
+            //   res.status(400).json({message: "Please Fill In All Fields"});
+            //   return
+            // }
           
             //Hash Password
             const salt = bcrypt.genSaltSync(10);
@@ -72,6 +73,7 @@ authRoutes.post('/api/signup', (req, res, next)=>{
           // Send User's Info to Frontend 
           res.status(200).json(theUser);
         });
+        console.log(req.isAuthenticated())
       });
     };
         //If User Signing Up is Patient

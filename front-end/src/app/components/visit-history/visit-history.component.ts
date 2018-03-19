@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { VisitService } from '../../services/visit.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,9 +21,7 @@ export class VisitHistoryComponent implements OnInit {
   user = <any>Object;
   visitHistory: any;
   patientId: String;
-
   visitHistoryError: String;
-
 
   ngOnInit() {
     this.myAuth
