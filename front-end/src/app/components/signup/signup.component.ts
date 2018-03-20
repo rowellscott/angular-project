@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment'
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -20,6 +21,8 @@ export class SignupComponent implements OnInit {
     zip:'',
     role:'',
     };
+
+    baseURL = environment.apiBase;
 
   errorMessage: String;
 

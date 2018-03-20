@@ -20,6 +20,7 @@ import { VisitHistoryComponent } from './components/visit-history/visit-history.
 import { NewVisitComponent } from './components/new-visit/new-visit.component';
 import { VisitDetailsComponent } from './components/visit-details/visit-details.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SearchPipe } from './pipes/search.pipe';
     VisitHistoryComponent,
     NewVisitComponent,
     VisitDetailsComponent,
-    SearchPipe
+    SearchPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

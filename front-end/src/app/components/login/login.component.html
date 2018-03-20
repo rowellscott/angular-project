@@ -1,3 +1,22 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+    <a class="navbar-brand" href="/">EasyMed</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+            <a class="nav-item nav-link active" href="/login">Login</a>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div id="login" class="container-fluid">
 <h3>Log In</h3>
 
 <p *ngIf="loginErrorMessage" class="error">
@@ -6,11 +25,12 @@
 
 <form (ngSubmit)="doLogin()">
   <label for="login-username-input"> Username: </label>
-  <input id="login-username-input" type="text" [(ngModel)]="loginInfo.username" name="loginUsername">
+  <input id="login-username-input" type="text" [(ngModel)]="loginInfo.username" name="loginUsername" class="form-control">
 
   <label for="login-password-input"> Password: </label>
-  <input id="login-password-input" type="password" [(ngModel)]="loginInfo.password" name="loginPassword">
+  <input id="login-password-input" type="password" [(ngModel)]="loginInfo.password" name="loginPassword" class="form-control">
 
   <button type="submit">Log In</button>
 </form>
 <p>Don't have an account?<a [routerLink]="['/signup']"> Sign Up</a></p> 
+</div>
