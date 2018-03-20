@@ -1,14 +1,14 @@
 <nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
-    <a class="navbar-brand" href="/">EasyMed</a>
+    <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/signup">Sign Up</a>
-            <a class="nav-item nav-link" href="/login">Login</a>
+            <a class="nav-item nav-link active" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" [routerLink]="['/signup']">Sign Up</a>
+            <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
         </div>
     </div>
 </nav>
@@ -27,8 +27,8 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="text-center col-12">
-                  <h1>EasyMed Is Your One Stop Shop For EHR</h1>
-                  <img class="d-block w-100" src="..." alt="First slide">
+                  <h6>EasyMed Is Your One Stop Shop For EHR</h6>
+                  <a class="btn btn-primary" role="button" aria-pressed="true" [routerLink]="['/signup']">Sign Up</a>
                 </div>  
               </div>
               <div class="carousel-item">

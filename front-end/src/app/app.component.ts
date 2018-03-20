@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,5 +28,21 @@ export class AppComponent {
     {name:'Beemo2'}
   ];
 
+  logoutError: String;
+
+  constructor(
+    private myAuth: AuthService,
+    private myRouter: Router
+    ){}
+    
+  logout(){
+    this.myAuth.logout()
+    .then(() => {
+      this.myRouter.navigate(['/']);
+    })
+    .catch(()=>{
+      this.logoutError = 'Error Logging Out'
+    });
+  }
   
 }

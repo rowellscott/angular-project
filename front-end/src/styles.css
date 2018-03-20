@@ -8,3 +8,9 @@
 nav {
   background-color: steelblue;
 }
+
+.auth-form{
+  background-color: whitesmoke;
+  opacity: 0.9;
+  margin-top: 3rem;
+}

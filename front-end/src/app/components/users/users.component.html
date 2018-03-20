@@ -1,5 +1,21 @@
-<!-- Check If No Clients Or Visits -->
+<!-- <nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+    <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link active" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" [routerLink]="['/logout']">Logout</a>
+        </div>
+    </div>
+</nav> -->
+
+
+
+<!-- Check If No Clients Or Visits -->
+<div id="user-home" class="container-fluid">
 <!-- Check For Doctor -->
 <div *ngIf="user.role==='Doctor'">
   <h1>{{user.firstName}} {{user.lastName}}</h1>
@@ -24,10 +40,10 @@
 
 
   <div *ngFor="let client of clients | search:'lastName':pattern | search:'firstName':patternTwo">
-    <p>
-      <a [routerLink]="['/visits/' + client._id]">{{ client.firstName}} {{ client.lastName }}</a> 
-      <img *ngIf="client.image" [src]="baseUrl + client.image" alt="" width="150" height="150">
-      </p>
+      <div class="card col-6 offset-3 text-center">
+        <a [routerLink]="['/visits/' + client._id]">{{ client.firstName}} {{ client.lastName }}</a> 
+        <img class="m-auto" *ngIf="client.image" [src]="baseUrl + client.image" alt="" width="25%" height="25%">
+      </div>  
   </div>
   <a [routerLink]="['/users/' + user._id + '/newClient']">Add Client</a>
 </div>
@@ -47,3 +63,4 @@
 
 <br>
 <button (click)="logout()">Logout</button>
+</div>
