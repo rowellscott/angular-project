@@ -14,6 +14,7 @@ export class VisitDetailsComponent implements OnInit {
   visitDetails: any;
   patientId: String;
   visitDetailsError: String;
+  logoutError: String;
   
   constructor(
     private myAuth: AuthService,
@@ -51,6 +52,16 @@ export class VisitDetailsComponent implements OnInit {
       .catch(err => {
         console.log(err)
         this.visitDetailsError = err;
+      });
+    }
+
+    logout(){
+      this.myAuth.logout()
+      .then(() => {
+        this.myRouter.navigate(['/']);
+      })
+      .catch(()=>{
+        this.logoutError = 'Error Logging Out'
       });
     }
 

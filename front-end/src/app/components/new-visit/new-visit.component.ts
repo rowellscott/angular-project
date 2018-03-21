@@ -34,6 +34,7 @@ export class NewVisitComponent implements OnInit {
   system = 'USA';
 
   newVisitError: String;
+  logoutError: String;
 
   constructor(
     private myAuth: AuthService,
@@ -89,6 +90,16 @@ export class NewVisitComponent implements OnInit {
         console.log("New Visit Error:", err);
         this.newVisitError = "Error Saving Visit"
         window.scrollTo(0, 0);
+    });
+  }
+
+  logout(){
+    this.myAuth.logout()
+    .then(() => {
+      this.myRouter.navigate(['/']);
+    })
+    .catch(()=>{
+      this.logoutError = 'Error Logging Out'
     });
   }
 

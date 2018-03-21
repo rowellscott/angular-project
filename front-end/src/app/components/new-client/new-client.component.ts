@@ -26,6 +26,7 @@ export class NewClientComponent implements OnInit {
 
   user = <any>{};
   savingError: String;
+  logoutError: String;
 
   myUploader = new FileUploader({
     url: environment.apiBase + '/api/users/new',
@@ -121,6 +122,16 @@ export class NewClientComponent implements OnInit {
         this.savingError = 'Error Saving Phone With Image';
       };
       this.myUploader.uploadAll();
+    }
+
+    logout(){
+      this.myAuth.logout()
+      .then(() => {
+        this.myRouter.navigate(['/']);
+      })
+      .catch(()=>{
+        this.logoutError = 'Error Logging Out'
+      });
     }
 }
 

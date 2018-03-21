@@ -27,7 +27,8 @@ export class ProfileComponent implements OnInit {
   saveError=""; 
 
   baseUrl = environment.apiBase;
-  
+  logoutError: String;
+
   constructor(
     private myUser: UserService,
     private myAuth: AuthService,
@@ -59,6 +60,7 @@ export class ProfileComponent implements OnInit {
       this.myUser.getProfile(id).
       then(res => {
         this.profile = res;
+        this.updatedUser = res;
         console.log('Profile: ', this.profile);
       })
       .catch(err => {
@@ -102,6 +104,8 @@ export class ProfileComponent implements OnInit {
         this.myRouter.navigate(['/users/', id]);
       })
       .catch( err => {
+        this.saveError = 'Please Fill In All Fields';
+        window.scroll(0, 0);
         console.log('Error Updating User', err);
       });
     }
@@ -118,5 +122,15 @@ export class ProfileComponent implements OnInit {
           console.log("Error in deleting:", err)
         });
     }
+
+    logout(){
+      this.myAuth.logout()
+      .then(() => {
+        this.myRouter.navigate(['/']);
+      })
+      .catch(()=>{
+        this.logoutError = 'Error Logging Out'
+      });
     }
+}
 

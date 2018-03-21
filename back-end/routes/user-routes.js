@@ -213,6 +213,13 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
     // const hashedPassword = bcrypt.hashSync(req.body.editedPassword, salt)
   
   if (req.user.role==="Patient"){
+      // Make Sure All Fields Are Filled In
+      if (req.body.updatedUsername === "" || req.body.updatedFirstName === '' || req.body.updatedLastName === ""
+      || req.body.updatedAddress === "" || req.body.updatedCity === "" || req.body.updatedState === ""
+      || req.body.updatedZip === ""){
+      res.status(500).json({message: 'Please Fill In All Fields'});
+      return
+  }
       const updates = {
         username: req.body.updatedUsername,
         firstName: req.body.updatedFirstName,
@@ -239,6 +246,14 @@ userRoutes.put('/api/users/:id/edit', (req, res, next)=>{
 
     //Without Insurance
     if (req.user.role==="Doctor"){
+      // Make Sure All Fields Are Filled In
+      if (req.body.updatedUsername === "" || req.body.updatedFirstName === '' || req.body.updatedLastName === ""
+        || req.body.updatedAddress === "" || req.body.updatedCity === "" || req.body.updatedState === ""
+        || req.body.updatedZip === ""){
+        res.status(500).json({message: 'Please Fill In All Fields'});
+        return
+      }
+      
       const updates = {
         username: req.body.updatedUsername,
         firstName: req.body.updatedFirstName,

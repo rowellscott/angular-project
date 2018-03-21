@@ -1,3 +1,21 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id]">Clients</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item">Logout</button>
+      </div>
+  </div>
+</nav>
+
+
+
 <div class="container-fluid" id="visit-details-body" class="user-pages-body">
 <div class="container" id="visit-details">
 

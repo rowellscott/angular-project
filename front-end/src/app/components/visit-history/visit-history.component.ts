@@ -22,6 +22,7 @@ export class VisitHistoryComponent implements OnInit {
   visitHistory: any;
   patientId: String;
   visitHistoryError: String;
+  logoutError: String;
 
   ngOnInit() {
     this.myAuth
@@ -55,5 +56,15 @@ export class VisitHistoryComponent implements OnInit {
         this.visitHistoryError = 'Error Finding Visit History';
         console.log(this.visitHistoryError);
       });
+  }
+
+  logout(){
+    this.myAuth.logout()
+    .then(() => {
+      this.myRouter.navigate(['/']);
+    })
+    .catch(()=>{
+      this.logoutError = 'Error Logging Out'
+    });
   }
 }

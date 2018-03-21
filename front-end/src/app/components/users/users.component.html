@@ -1,18 +1,34 @@
-<!-- <nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
-    <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav *ngIf="user.role==='Doctor'" class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link active" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" [routerLink]="['/logout']">Logout</a>
-        </div>
-    </div>
-</nav> -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link active" [routerLink]="['/users/' + user._id]">Clients</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item">Logout</button>
+      </div>
+  </div>
+</nav>
 
+<nav *ngIf="user.role==='Patient'" class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" [routerLink]="['/users/' + user._id]">Visit</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item">Logout</button>
+      </div>
+  </div>
+</nav>
 
 <!-- Check If No Clients Or Visits -->
 <div id="user-home" class="container-fluid">
@@ -102,9 +118,4 @@
     <li>Weight: {{clients[0].weightNum}}{{clients[0].weightScale}}</li>
     <li>Blood Pressure: {{clients[0].blood_pressure}}</li>
   </ul>
-
-<a [routerLink]="['/users/' + user._id + '/edit']">Your Profile</a>
-
-<br>
-<button (click)="logout()">Logout</button>
 </div>

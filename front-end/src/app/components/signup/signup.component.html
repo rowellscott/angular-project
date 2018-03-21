@@ -1,18 +1,17 @@
 <nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
-    <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" [routerLink]="['/signup']">Sign Up</a>
-            <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
-        </div>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link active" [routerLink]="['/signup']">Sign Up</a>
+          <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
+      </div>
+  </div>
 </nav>
-
 
 <div id="sign-up" class="container-fluid">
 
@@ -89,7 +88,7 @@
     <input type="text" name="lastNameValue" [(ngModel)]="signUpInfo.lastName" class="form-control" placeholder="Last Name">
   </div>
 
-<button type="submit">Sign Up</button>
+<button class="btn btn-success btn-block auth" type="submit">Sign Up</button>
 </form>
 <p>Already have account?
   <a [routerLink]="['/login']">Log In</a>
