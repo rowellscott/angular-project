@@ -15,19 +15,16 @@
 
 
 
-
 <div id="login" class="container-fluid">
-
-
-<p *ngIf="loginErrorMessage" class="error">
-  {{ loginErrorMessage }}
-</p>
-
 <div class="container">
     <div class="row ">
     <div class="card col-sm-6 text-center ml-auto auth-form">
       <div class="card-body">
           <h3>Log In</h3>
+    <p *ngIf="loginErrorMessage" class="error alert alert-danger" role="alert">
+        <i class="fa fa-exclamation-circle"></i>
+          {{ loginErrorMessage }}
+        </p>
 <form (ngSubmit)="doLogin()">
   
   <label for="login-username-input"> Username </label>

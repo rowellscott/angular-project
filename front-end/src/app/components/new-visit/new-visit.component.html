@@ -29,7 +29,8 @@
     {{ newVisitError }}
   </p>
 <form (ngSubmit)="addNewVisit()" >
- 
+ <div class="row">
+  <div class="col-3">
   <label for="temp-deg">Temperature (F):</label>
   <input id="temp-deg" type="number" [(ngModel)]="newVisit.temperatureDeg" name="temperatureDeg" 
   value="" class="temp form-control">
@@ -39,16 +40,19 @@
   <label for="temp-C">C</label>
   <input id="temp-C" type="radio" [(ngModel)]="newVisit.temperatureScale" name="temperatureScaleC" 
   value="C" class="temp-button"> -->
-  <br>
-
+</div>
+  <!-- <br> -->
+  <div class="col-3">
   <label for="height-1">Height (ft):</label>
   <input id="height-1" type="number" [(ngModel)]="newVisit.heightNumOne" name="heightNumOne" 
   value="" class="height form-control">
-
+</div>
+<div class="col-3">
   <label for="height-2">Height (in):</label>
   <input id="height-2" type="number" [(ngModel)]="newVisit.heightNumTwo" name="heightNumTwo" 
   value="" class="height form-control">
-
+  </div>
+  </div>
   <br>
   <label for="weight">Weight (lbs):</label>
   <input id="weight" type="number" [(ngModel)]="newVisit.weightNum" name="weightNum" 

@@ -93,6 +93,10 @@ export class NewVisitComponent implements OnInit {
     });
   }
 
+  cancelVisit(){
+    
+  }
+
   logout(){
     this.myAuth.logout()
     .then(() => {

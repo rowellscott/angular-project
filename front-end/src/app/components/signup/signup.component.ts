@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit {
       console.log("Sign Up Err in Catch:", err)
       const parsedError = err.json();
       this.errorMessage = parsedError.message;
+      window.scroll(0,0)
     });
   }
 }
