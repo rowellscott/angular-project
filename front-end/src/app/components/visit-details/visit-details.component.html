@@ -1,10 +1,14 @@
-<p>
-  visit-details works!
-</p>
+<div class="container-fluid" id="visit-details-body" class="user-pages-body">
+<div class="container" id="visit-details">
 
+<div class="card">
+  <div class="card-header">
 <h5>Visit On {{visitDetails.createdAt | date:'MM/dd/yyyy'}}</h5> 
+</div>
+<div class="card-body">
+    <h6>Visit Info</h6>
 <ul>
-  <li>Cheif Complaint: {{ visitDetails.chief_complaint }}</li>
+  <li>Chief Complaint: {{ visitDetails.chief_complaint }}</li>
   <li>Assessment: {{ visitDetails.assessment }}</li>
   <li>Treatment: {{ visitDetails.treatment }}</li>
 </ul>
@@ -17,4 +21,11 @@
   <li>Blood Pressure: {{visitDetails.blood_pressure}}</li>
 </ul>
 
+
 <a [routerLink]="['/visits/' + visitDetails.patient_id]">Visit History</a>
+</div>
+
+</div>
+
+</div>
+</div>

@@ -5,12 +5,13 @@
 
 /* Carousel Background */
 #introCarousel{
-  background-image: url('https://picsum.photos/200/300/?blur');
-  /* background-image: url('../../../../../back-end/public/images/screen-1839500_1280.jpg'); */
+  /* background-image: url('https://picsum.photos/200/300/?blur'); */
+  background-image: url('../../../../../back-end/public/images/screen-1839500_1280.jpg');
   /* ?blur for blurred */
   background-size: cover;
   background-repeat: no-repeat;
   height: 30vh;
+  color: white;
 }
 
 /* Carousel Indicators */
@@ -42,6 +43,29 @@
   background-color: steelblue;
   color: white;
   text-align: center;
+  height: 15vh; 
+  border: solid 1px white;
+}
+
+
+.block-text-hidden{
+  color: white;
+  /* display: none; */
+  visibility: hidden;
+}
+
+.block:hover{
+  background-color: whitesmoke;
+  height: 25vh;
+  transition: all 2s ease;
+  color: black;
+}
+
+.block:hover .block-text-hidden{
+  color: black;
+  /* display: block; */
+  visibility: visible;
+  transition: all 2s ease;
 }
 
 footer{

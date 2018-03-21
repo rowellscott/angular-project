@@ -1,6 +1,9 @@
+<div id="add-form-body" class="container-fluid">
+<div id="add-form" class="container shadow">
 <h3>Add Client</h3>
-
-<p *ngIf="savingError" class="error">
+<hr>
+<p *ngIf="savingError" class="error alert alert-danger" role="alert">
+    <i class="fa fa-exclamation-circle"></i>
     {{ savingError }}
   </p>
 
@@ -22,13 +25,17 @@
 
   <label>Gender:</label>
   <br>
-  <label for="gender-male">M</label>
+  <div class="form-check form-check-inline">
   <input id="gender-male" type="radio" [(ngModel)]="newClient.patientGender" name="patientGender" 
-  value="M" class="form-control" checked="checked">
-  <label for="gender-female">F</label>
+  value="M" class="form-check-input" checked="checked">
+  <label class="form-check-label" for="gender-male">M</label>
+  </div>
+  <div class="form-check form-check-inline">
   <input id="gender-female" type="radio" [(ngModel)]="newClient.patientGender" name="patientGender" 
-  value="F" class="form-control">
-
+  value="F" class="form-check-input">
+  <label class="form-check-label" for="gender-female">F</label>
+  </div>
+  <br>
   <label for="address">Address:</label>
   <input id="address" type="text" [(ngModel)]="newClient.patientAddress" name="patientAddress" 
   value="" class="form-control">
@@ -52,7 +59,11 @@
   <label for="client-image">Client Photo (optional): </label>
   <input id="client-image" type="file" name="patientImage" ng2FileSelect [uploader]="myUploader">
   <br>
-
-    <button>Add Client</button>
+  <div class="col-12 text-center add-button">
+    <button class="btn btn-primary">Add Client</button>
+  </div>
 </form>
 <a [routerLink]="['/users/' + user._id]">Home</a>
+
+</div>
+</div>

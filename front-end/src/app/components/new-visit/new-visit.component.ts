@@ -88,6 +88,7 @@ export class NewVisitComponent implements OnInit {
     .catch(err => {
         console.log("New Visit Error:", err);
         this.newVisitError = "Error Saving Visit"
+        window.scrollTo(0, 0);
     });
   }
 

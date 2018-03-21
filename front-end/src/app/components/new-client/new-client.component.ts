@@ -80,10 +80,11 @@ export class NewClientComponent implements OnInit {
           patientInsuranceCo: '',
         };
         this.savingError = '';
-        this.myRouter.navigate(['/visits', res._id]);
+        this.myRouter.navigate(['/visits/new', res._id]);
       })
       .catch( err => {
         this.savingError = 'Error Adding Client';
+        window.scrollTo(0, 0);
       });
     }
 

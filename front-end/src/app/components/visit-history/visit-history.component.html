@@ -1,17 +1,29 @@
-
+<div class="container-fluid" id="visit-history-body">
+  <div class="container" id="visit-history">
 <p *ngIf="visitHistoryError" class="error">
     {{ visitHistoryError }}
   </p>
 
-<h3>Visit History for {{visitHistory[0].patient_id.firstName}} {{visitHistory[0].patient_id.lastName}} </h3>
-<div *ngFor="let visit of visitHistory">
+<h3 class="text-center">Visit History for {{visitHistory[0].patient_id.firstName}} {{visitHistory[0].patient_id.lastName}} </h3>
+<hr>
+<div class="row">
+  <div class="col-6">
+      <!-- <a [routerLink]="['/users/' + user._id]">All Clients</a> -->
+      <a [routerLink]="['/visits/new/' + patientId]">Add Visit</a>
+  </div>
+  <div class="col-6 card">
+  <div *ngFor="let visit of visitHistory">
   <a [routerLink]="['/visits/visit/' + visit._id]">Date: {{visit.createdAt | date:'MM/dd/yyyy' }} - {{ visit.assessment }}</a>
-  <hr>
+ 
 </div>
 
 <div *ngIf="visitHistory.length===0">
   <p>No Visits</p>
 </div>
+</div>
 
-<a [routerLink]="['/users/' + user._id]">All Clients</a>
-<a [routerLink]="['/visits/new/' + patientId]">Add Visit</a>
+
+
+</div>
+</div>
+</div>

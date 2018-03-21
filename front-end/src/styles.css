@@ -14,3 +14,13 @@ nav {
   opacity: 0.9;
   margin-top: 3rem;
 }
+
+.user-pages-body{
+margin-top: 4rem;
+background-color: whitesmoke;
+height: 100vh
+}
+
+.user-pages-content{
+  background: white;
+}

@@ -57,36 +57,36 @@
       </div>
 
   <label for="firstNameValue">Name:</label>
-  <input type="text" name="firstNameValue" [(ngModel)]="signUpInfo.firstName" class="form-control">
+  <input type="text" name="firstNameValue" [(ngModel)]="signUpInfo.firstName" class="form-control" placeholder="Name">
 
   <label for="lastNameValue">Last Name:</label>
-  <input type="text" name="lastNameValue" [(ngModel)]="signUpInfo.lastName" class="form-control">
+  <input type="text" name="lastNameValue" [(ngModel)]="signUpInfo.lastName" class="form-control" placeholder="Last Name">
 
   <label for="addressValue">Address:</label>
-  <input type="text" name="addressValue" [(ngModel)]="signUpInfo.address" class="form-control">
+  <input type="text" name="addressValue" [(ngModel)]="signUpInfo.address" class="form-control" placeholder="Address">
 
   <label for="cityValue">City:</label>
-  <input type="text" name="cityValue" [(ngModel)]="signUpInfo.city" class="form-control">
+  <input type="text" name="cityValue" [(ngModel)]="signUpInfo.city" class="form-control" placeholder="City">
 
   <label for="stateValue">State:</label>
-  <input type="text" name="stateValue" [(ngModel)]="signUpInfo.state" class="form-control">
+  <input type="text" name="stateValue" [(ngModel)]="signUpInfo.state" class="form-control" placeholder="State">
 
   <label for="zipValue">Zip Code:</label>
-  <input type="number" name="zipValue" [(ngModel)]="signUpInfo.zip" class="form-control">
+  <input type="number" name="zipValue" [(ngModel)]="signUpInfo.zip" class="form-control" placeholder="Zip">
 </div>
 
 <div *ngIf="signUpInfo.role==='Patient'">
     <label for="usernameValue">Username:</label>
-    <input type="text" name="usernameValue" [(ngModel)]="signUpInfo.username" class="form-control">
+    <input type="text" name="usernameValue" [(ngModel)]="signUpInfo.username" class="form-control" placeholder="Username">
   
     <label for="passwordValue">Password:</label>
-    <input type="password" name="passwordValue" [(ngModel)]="signUpInfo.password" class="form-control">
+    <input type="password" name="passwordValue" [(ngModel)]="signUpInfo.password" class="form-control" placeholder="Password">
 
     <label for="firstNameValue">Name:</label>
-    <input type="text" name="firstNameValue" [(ngModel)]="signUpInfo.firstName" class="form-control">
+    <input type="text" name="firstNameValue" [(ngModel)]="signUpInfo.firstName" class="form-control" placeholder="Name">
   
     <label for="lastNameValue">Last Name:</label>
-    <input type="text" name="lastNameValue" [(ngModel)]="signUpInfo.lastName" class="form-control">
+    <input type="text" name="lastNameValue" [(ngModel)]="signUpInfo.lastName" class="form-control" placeholder="Last Name">
   </div>
 
 <button type="submit">Sign Up</button>

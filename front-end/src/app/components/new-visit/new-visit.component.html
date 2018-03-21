@@ -1,10 +1,19 @@
-<h3>New Visit</h3>
+<div class="container-fluid" id="new-visit-body">
+  <div class="container" id="new-visit">
 
+
+
+<h3>New Visit</h3>
+<hr>
+<p *ngIf="newVisitError" class="error alert alert-danger" role="alert">
+    <i class="fa fa-exclamation-circle"></i>
+    {{ newVisitError }}
+  </p>
 <form (ngSubmit)="addNewVisit()" >
  
   <label for="temp-deg">Temperature (F):</label>
   <input id="temp-deg" type="number" [(ngModel)]="newVisit.temperatureDeg" name="temperatureDeg" 
-  value="" class="temp">
+  value="" class="temp form-control">
   <!-- <label for="temp-F">F</label>
   <input id="temp-F" type="radio" [(ngModel)]="newVisit.temperatureScale" name="temperatureScaleF" 
   value="F" class="temp-button" checked>
@@ -15,16 +24,16 @@
 
   <label for="height-1">Height (ft):</label>
   <input id="height-1" type="number" [(ngModel)]="newVisit.heightNumOne" name="heightNumOne" 
-  value="" class="height">
+  value="" class="height form-control">
 
   <label for="height-2">Height (in):</label>
   <input id="height-2" type="number" [(ngModel)]="newVisit.heightNumTwo" name="heightNumTwo" 
-  value="" class="height">
+  value="" class="height form-control">
 
   <br>
   <label for="weight">Weight (lbs):</label>
   <input id="weight" type="number" [(ngModel)]="newVisit.weightNum" name="weightNum" 
-  value="" class="weight">
+  value="" class="weight form-control">
   <br>
 
   <label for="blood-pressure">Blood Pressure:</label>
@@ -48,6 +57,10 @@
   <input id="client-image" type="file" name="patientImage" ng2FileSelect [uploader]="myUploader">
   <br> -->
 
-<button type="submit">Submit Visit</button>
+  <div class="col-12 text-center add-button">
+      <button type="submit" class="btn btn-primary">Add Visit</button>
+    </div>
 </form>
-<a [routerLink]="['/visits/' + patientID]">Visit History</a>
+<!-- <a [routerLink]="['/visits/' + patientID]">Visit History</a> -->
+</div>
+</div>

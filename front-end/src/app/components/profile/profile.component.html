@@ -1,7 +1,16 @@
+<div class="container-fluid  user-pages-body">
+  <div class="container user-pages-content">
 
-<h3 *ngIf="profile.lastName.slice(-1)==='s'">{{profile.firstName}} {{profile.lastName}}' Profile</h3>
-<h3 *ngIf="profile.lastName.slice(-1)!=='s'">{{profile.firstName}} {{profile.lastName}}'s Profile</h3>
-
+<h3 *ngIf="profile.lastName.slice(-1)==='s'" class="text-center">{{profile.firstName}} {{profile.lastName}}' Profile</h3>
+<h3 *ngIf="profile.lastName.slice(-1)!=='s'" class="text-center">{{profile.firstName}} {{profile.lastName}}'s Profile</h3>
+<hr>
+<div class="row">
+  <div class="col-sm-6">
+  <div class="card info-card">
+  <div class="card-header">
+    <h3>Profile Info</h3>
+  </div>
+  <div clas="card-body">
 <ul>
   <li>Username: {{profile.username}}</li>
   <li>Name: {{profile.firstName}}</li>
@@ -14,8 +23,11 @@
   <li *ngIf="user.role==='Patient'">Insurance: {{profile.insurance_co}}</li>
   <li *ngIf="profile.image">Photo: <img [src]="baseUrl + profile.image" alt="" width="150" height="150"></li>
 </ul>
+</div>
+</div>
+</div>
 
-
+<div class="col-sm-6">
 <h3>Edit Profile</h3>
 <form (ngSubmit)="updateProfile(profile._id, myForm)" #myForm='ngForm'>
   <label for="username">Username:</label>
@@ -82,3 +94,7 @@
   </form>
   <button (click)="deleteThisUser()">Delete Profile</button>
   <a [routerLink]="['/users/' + user._id]">Home</a>
+</div>
+</div>
+</div>
+</div>

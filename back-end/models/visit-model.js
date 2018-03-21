@@ -64,7 +64,7 @@ const VisitSchema = new Schema({
     doctor_id:{
       type: Schema.Types.ObjectId,
       required: true
-    }
+    }                
   },
     {
       timestamps: true
