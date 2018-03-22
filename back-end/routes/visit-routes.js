@@ -53,7 +53,7 @@ visitRoutes.post('/api/visits/new/:id', (req, res, next)=>{
       doctor_id: req.user.id,
     });
     console.log("newVisit:", newVisit)
-    newVisit.save((err)=>{
+    newVisit.save((err)=>{ 
       if(err){
         console.log("Saving Err:",  err)
         

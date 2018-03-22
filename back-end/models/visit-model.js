@@ -6,7 +6,7 @@ const VisitSchema = new Schema({
       type: Number,
       required: true,
       min: 90,
-      max: 110
+      max: 110.9
     },
     temperatureScale:{
       type: String,
@@ -15,7 +15,8 @@ const VisitSchema = new Schema({
     },
     heightNumOne: {
       type: Number,
-      required: true
+      required: true,
+      max: 10,
     },
     heightScaleOne:{
       type: String,
@@ -24,16 +25,21 @@ const VisitSchema = new Schema({
     },
     heightNumTwo:{
       type: Number,
-      required: true
+      required: true,
+      min: 0,
+      max: 36
     },
     heightScaleTwo:{
       type: String,
       required: true,
+    
       enum: ["in", "cm", "'"]
     },
     weightNum: {
       type: Number,
-      required: true
+      required: true,
+      min:0,
+      max:999
     },
     weightScale:{
       type: String,

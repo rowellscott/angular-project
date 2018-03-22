@@ -31,7 +31,6 @@
   <div class="col-6 card">
   <div *ngFor="let visit of visitHistory">
   <a [routerLink]="['/visits/visit/' + visit._id]">Date: {{visit.createdAt | date:'MM/dd/yyyy' }} - {{ visit.assessment }}</a>
- 
 </div>
 
 <div *ngIf="visitHistory.length===0">

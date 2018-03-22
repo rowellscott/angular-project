@@ -28,7 +28,22 @@ export class NewVisitComponent implements OnInit {
       chiefComplaint: '',
       assessment: '',
       treatment: '',
-  }
+  };
+
+  cancelRecord={
+    temperatureDeg: 90,
+      temperatureScale: 'F',
+      heightNumOne: 0, 
+      heightScaleOne: 'ft', 
+      heightNumTwo: 0,
+      heightScaleTwo: 'in',
+      weightNum: 0,
+      weightScale: 'lbs',
+      bloodPressure: 'unk',
+      chiefComplaint: 'Canceled',
+      assessment: 'Canceled',
+      treatment: 'Canceled',
+  };
 
   //English or Metric System Form Selector
   system = 'USA';
@@ -61,7 +76,7 @@ export class NewVisitComponent implements OnInit {
       (params) => {
         console.log(params['id']);
         this.patientID = params['id'];
-        console.log(this.newVisit)
+        console.log(this.newVisit);
       });
   }
 
@@ -83,18 +98,28 @@ export class NewVisitComponent implements OnInit {
           treatment: '',
       };
       this.newVisitError='';
-      this.myRouter.navigate(['/users/', this.user._id]);
+      this.myRouter.navigate(['/visits/', this.patientID]);
+      window.scroll(0,0);
       // or redirect to Patient Visit History to Confirm?
     })
     .catch(err => {
         console.log("New Visit Error:", err);
-        this.newVisitError = "Error Saving Visit"
+        this.newVisitError = "Error Saving Visit";
         window.scrollTo(0, 0);
     });
   }
 
   cancelVisit(){
-    
+    this.myVisits.addNewVisit(this.patientID, this.cancelRecord)
+    .then(res=>{
+      this.newVisitError='';
+      this.myRouter.navigate(['/users/', this.user._id]);
+    })
+    .catch(err => {
+      console.log("Cancel Visit Error:", err);
+      this.newVisitError = "Error Canceling Visit";
+      window.scrollTo(0, 0);
+    });
   }
 
   logout(){
@@ -103,7 +128,7 @@ export class NewVisitComponent implements OnInit {
       this.myRouter.navigate(['/']);
     })
     .catch(()=>{
-      this.logoutError = 'Error Logging Out'
+      this.logoutError = 'Error Logging Out';
     });
   }
 

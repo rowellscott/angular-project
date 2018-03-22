@@ -127,13 +127,13 @@ userRoutes.get('/api/users/:id', (req, res, next)=>{
           }
     //Find All Patients Data By Id
       User.find({'_id': {$in: clientIds}
-      }, (err, clients) =>{
+      }).sort({ lastName: 1 }).sort({firstName: 1}).exec((err, clients) =>{
         if(err){
           res.status(500).json({message:"Clients List Not Found"});
           return
         }
         res.status(200).json(clients)
-      })
+      });
   });
   }
 
@@ -293,8 +293,8 @@ userRoutes.delete("/api/users/:id/delete", (req, res, next)=>{
       res.json(err);
       return;
     }
-
-    //Wouldn't Do In Reality, Inserted For Example Purposes. Remove All Records Associated With Patient
+    
+    //Wouldn't Do In Reality, Inserted For Example Purposes. Would Use Active/Inactive Flags in Working System. Remove All Records Associated With Patient
     Visit.remove({'patient_id': req.params.id}, err => {
       if (err) {
         res.json(err);

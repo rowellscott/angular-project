@@ -30,6 +30,8 @@ const UserSchema = new Schema({
     },
     state: {
       type: String,
+      maxlength: 2,
+      uppercase: true,
       required: true
     },
     zip: {
