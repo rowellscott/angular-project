@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+.shadow {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+nav {
+  background-color: steelblue;
+}
+
+/* Sign Up and Login Form Cards */
+.auth-form{
+  background-color: whitesmoke;
+  opacity: 0.9;
+  margin-top: 3rem;
+}
+
+/* Body for User Pages */
+.user-pages-body{
+margin-top: 4rem;
+background-color: whitesmoke;
+height: 100vh
+}
+ 
+.user-pages-content{
+  background: white;
+}
+
+button.auth{
+  margin: 1rem 0px;
+}
