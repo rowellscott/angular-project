@@ -11,18 +11,18 @@
   <li>Press the Sign Up link in the upper right. Sign Up for an account as a doctor by selecting "Doctor" from the dropdown menu. Login if you have an account. Select as a patient if a doctor user has registered you.</li>
    
    <h4><u>Doctors</u></h4>
-   <h4>New Patients</h4>
+   <h4>-Adding New Patients</h4>
    <li>Press the "Add Patient" Link on the user home page.</li>
     <li>Fill out the New Patient form, fill in all fields. Press Add Patient button at bottom.</li>
     <li>You will be redirected to the New Visit form. <b>IMPORTANT - When adding new plient, either complete New Visit form or press Cancel at top of the form. Do not leave the page without doing one or the other.</b></li> 
     <li>Fill out the form, fill in all fields. Press Add Visit button at bottom or cancel if you don't want to add a visit. </li>
     <li>You will be redirected to the new patient's visit history.</li>
     
-   <h4>Existing Patients</h4>
+   <h4>-Finding Existing Patients</h4>
     <li>Use the Search Patients form to query your patients list for the current patient.</li>
     <li>Click on the link with their name to redirect to their Visit History.</li>
     <li>Press a link in the visit history list on the right of the screen to see the details of a particular visit or press the "Add Visit" link to add a new visit record.</li>
-  <h4>Profile</h4>
+  <h4>-Profile</h4>
      <li>Click the profile link at the top right to view and edit your profile information.</li>
      
   <h4>Patients</h4>
