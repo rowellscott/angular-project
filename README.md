@@ -1,7 +1,7 @@
 # EasyMed
 
 <h1 align="center">EasyMed</h1>
-<h3 align="center">MEAN stack - Angular 5, Express.js, MongoDB, Mongoose, Node.js, Passport.js</h3>
+<h3 align="center">Angular 5, Express.js, MongoDB, Mongoose, Node.js, Passport.js</h3>
 
 <h4>Overview </h4>
  <p> A MEAN stack application where a single doctor practice can create, store, and access patient and visit records.</p>
