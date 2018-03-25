@@ -29,6 +29,6 @@
   <li>On login, you will see your latest visit's details. Click the profile link at the top right to view and edit your profile information.</li>
   </ul>
     <h4>Code </h4>
-      <p>Used Node.js, Express.js, MongoDB, Mongoose, and Passport.js to implement the application.</p>
+      <p>Used Angular 5, Node.js, Express.js, MongoDB, Mongoose, and Passport.js to implement the application.</p>
     <h4>Conclusion</h4>
       <p>If you have any comments or suggestions, please feel free to contact at rowell.scott@gmail.com.</p>
