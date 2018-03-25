@@ -8,9 +8,9 @@
   
   <h4>Instructions</h4> 
   <ul>
-  <li>Press the Sign Up link in the upper right. Sign Up for an account as a doctor by selecting doctor from the dropdown menu. Login if you have an account. Sign up as a patient if a doctor user has registered you.</li>
+  <li>Press the Sign Up link in the upper right. Sign Up for an account as a doctor by selecting "Doctor" from the dropdown menu. Login if you have an account. Select as a patient if a doctor user has registered you.</li>
    
-   <h4>Doctors</h4>
+   <h4><u>Doctors</u></h4>
    <h5>New Patients</h5>
    <li>Press the "Add Patient" Link on the user home page.</li>
     <li>Fill out the New Patient form, fill in all fields. Press Add Patient button at bottom.</li>
