@@ -4,11 +4,11 @@
 <h3 align="center">Angular 5, Express.js, MongoDB, Mongoose, Node.js, Passport.js</h3>
 
 <h4>Overview </h4>
- <p> A MEAN stack application where a single doctor practice can store patient and visit records.</p>
+ <p> A MEAN stack application where a single doctor practice can create, store, and access patient and visit records.</p>
   
   <h4>Instructions</h4> 
   <ul>
-  <li>Press the Sign Up link in the upper right. Sign-Up for an account as a doctor by selecting doctor from the dropdown. Login if you have an account. Sign up as a patient if a doctor user has registered you.</li>
+  <li>Press the Sign Up link in the upper right. Sign Up for an account as a doctor by selecting doctor from the dropdown menu. Login if you have an account. Sign up as a patient if a doctor user has registered you.</li>
    
    <h4>Doctors</h4>
    <h5>New Patients</h5>
